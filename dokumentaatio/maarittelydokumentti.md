@@ -1,6 +1,6 @@
 # Määrittelydokumentti
 
-##Ohjelmointikieli
+## Ohjelmointikieli
 
 Python
 
@@ -8,7 +8,7 @@ Python
 
 ## Koulutusohjelma
 
-Tietojenkäsittelytieteen kandi TKT
+Tietojenkäsittelytieteen kandi - TKT
 
 ## Kieli
 
