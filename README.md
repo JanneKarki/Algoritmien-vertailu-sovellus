@@ -4,3 +4,5 @@
 - [Määrittelydokumentti](https://github.com/JanneKarki/Algoritmien-vertailu-sovellus/blob/master/dokumentaatio/maarittelydokumentti.md)
 
 ## Viikkoraportit
+
+- [Viikkoraportti 1](https://github.com/JanneKarki/Algoritmien-vertailu-sovellus/blob/master/dokumentaatio/Viikkoraportti_1.md)
