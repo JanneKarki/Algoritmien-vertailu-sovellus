@@ -16,10 +16,6 @@ Projektissa selvitetään eri algoritmien avulla reitti satunnaisesti generoidun
 
 Labyrintin ratakaisuun käytettävät algortimit ovat wikipedian [Maze-solving algorithm](https://en.wikipedia.org/wiki/Maze-solving_algorithm) -artikkelissa mainitut Wall follower, Pledge ja Tremaux, joilla ei ole etukäteistietoa labyrintin muodosta, vaan sen muoto selviää sitä mukaan kun ne etenevät labyrintissä.
 
-## Aika- ja tilavaativuudet
-
-Eivät vielä selvillä.
-
 ## Syötteet
 
 Labyrintin koko.
