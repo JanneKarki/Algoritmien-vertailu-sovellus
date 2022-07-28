@@ -6,7 +6,7 @@ Projekti suoritetaan osana tietojenkäsittelytieteen kandidaatin (TKT) tutkintoa
 
 ## Kieli
 
-Projektin ohjelmointikieli on Pyhthon. Koodin, kommenttien ja dokumenttien kieli on suomi. 
+Projektin ohjelmointikieli on Pyhthon. Koodin kieli on englanti ja  kommenttien ja dokumenttien kieli on suomi. 
 
 ## Ratkaistava ongelma
 
