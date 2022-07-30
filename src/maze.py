@@ -3,74 +3,74 @@
 
 import random
 
-maze_size = 5
-graph = {}
-graph_edges = []
-disjoint_set = {}
-solution = []
+class Maze:
 
-def find(element):
-    if disjoint_set[element] == element:
-        return element
-    else:
-        return find(disjoint_set[element])
+    def __init__(self):
+        self.maze_size = 5
+        self.graph = {}
+        self.graph_edges = []
+        self.disjoint_set = {}
+        self.solution = []
 
-def union(element1, element2):
-    _set1 = find(element1)
-    _set2 = find(element2)
-    disjoint_set[_set1] = _set2
+    def maze_by_kruskal(self):
+        for x in range (0, self.maze_size):
+            for y in range (0, self.maze_size):
+                node = (x,y)
+                self.graph[node] = []
 
+        for node in self.graph.keys():
+            x,y = node
+            neighbours = []
 
-for x in range (0, maze_size):
-    for y in range (0, maze_size):
-        node = (x,y)
-        graph[node] = []
+            if x > 0:
+                neighbours.append((x - 1, y))
 
-for node in graph.keys():
-    x,y = node
-    neighbours = []
+            if x < self.maze_size - 1:
+                neighbours.append((x + 1, y))
 
-    if x > 0:
-        neighbours.append((x - 1, y))
+            if y > 0:
+                neighbours.append((x, y - 1))
 
-    if x < maze_size - 1:
-        neighbours.append((x + 1, y))
-
-    if y > 0:
-        neighbours.append((x, y - 1))
-
-    if y < maze_size - 1:
-        neighbours.append((x, y + 1))
+            if y < self.maze_size - 1:
+                neighbours.append((x, y + 1))
+                    
+            self.graph[node] = neighbours   
             
-    graph[node] = neighbours   
-    
 
-for element in graph.keys():
-    disjoint_set[element] = element
+        for element in self.graph.keys():
+            self.disjoint_set[element] = element
 
-for node in graph.keys():
-    neighbours = graph[node]
-    for neighbour in neighbours:
-        if(node, neighbour) not in graph_edges and (neighbour, node) not in graph_edges:
-            graph_edges.append((node, neighbour))
+        for node in self.graph.keys():
+            neighbours = self.graph[node]
+            for neighbour in neighbours:
+                if(node, neighbour) not in self.graph_edges and (neighbour, node) not in self.graph_edges:
+                    self.graph_edges.append((node, neighbour))
 
 
-while (len(solution) < (len(graph.keys()) - 1)):
-    rnd_edge = random.choice(graph_edges)
-    node1, node2 = rnd_edge
-    set1 = find(node1)
-    set2 = find(node2)
-            
-    if (set1 != set2):
-        union(node1, node2)
-        solution.append(rnd_edge)
+        while (len(self.solution) < (len(self.graph.keys()) - 1)):
+            rnd_edge = random.choice(self.graph_edges)
+            node1, node2 = rnd_edge
+            set1 = self._find(node1)
+            set2 = self._find(node2)
+                    
+            if (set1 != set2):
+                self._union(node1, node2)
+                self.solution.append(rnd_edge)
 
-        graph_edges.remove(rnd_edge)
+                self.graph_edges.remove(rnd_edge)
 
+    def _find(self, element):
+        if self.disjoint_set[element] == element:
+            return element
+        else:
+            return self._find(self.disjoint_set[element])
 
+    def _union(self, element1, element2):
+        _set1 = self._find(element1)
+        _set2 = self._find(element2)
+        self.disjoint_set[_set1] = _set2
 
-print(graph)
-print()
-print(graph_edges)
-print()
-print(solution, "solution")
+if __name__ == "__main__":
+    a = Maze()
+    a.maze_by_kruskal()
+    print(a.solution)
