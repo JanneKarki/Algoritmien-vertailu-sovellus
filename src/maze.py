@@ -1,32 +1,44 @@
 
 "Luo labyrintin"
 
-size = 5
-graph = dict()
+import random
 
-for x in range (0, size):
-    for y in range (0, size):
+maze_size = 5
+graph = {}
+graph_edges = []
+
+
+for x in range (0, maze_size):
+    for y in range (0, maze_size):
         node = (x,y)
-        graph[node] = list()
+        graph[node] = []
 
 for node in graph.keys():
     x,y = node
-    neighbours = list()
+    neighbours = []
 
     if x > 0:
         neighbours.append((x - 1, y))
 
-    if x < size - 1:
+    if x < maze_size - 1:
         neighbours.append((x + 1, y))
 
     if y > 0:
         neighbours.append((x, y - 1))
 
-    if y < size - 1:
+    if y < maze_size - 1:
         neighbours.append((x, y + 1))
             
     graph[node] = neighbours   
     
 
+for node in graph.keys():
+    neighbours = graph[node]
+    for neighbour in neighbours:
+        if(node, neighbour) not in graph_edges and (neighbour, node) not in graph_edges:
+            graph_edges.append((node, neighbour))
+            
 print(graph)
+print()
+print(graph_edges)
 
