@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import StringVar, ttk, constants
 from turtle import bgcolor
+from PIL import Image
 
 class UI:
     def __init__(self, root):
@@ -9,7 +10,7 @@ class UI:
         Args:
             root (tkinter.TK): Graafisen käyttöliittymän moduuli.
         """
-        
+        self.photo_image = tk.PhotoImage(file="data/maze.png")
         self._root = root
         self._frame = ttk.Frame(master=self._root)
         
@@ -18,9 +19,12 @@ class UI:
     def start(self):
         """Alustaa ja näyttää sovelluksen näkymän.
         """
-        heading_label = ttk.Label(master=self._frame, text="Hello")
+
+        heading_label = ttk.Label(master=self._frame, text="Labyrintti")
         heading_label.grid(row=0, column=0)
-        
+        maze_label = ttk.Label(master=self._frame, image=self.photo_image)
+        maze_label.grid(row=1, column=0 )
+
         s = ttk.Style()
         s.configure("TFrame", background="DarkSeaGreen1")
         s.configure("TLabel", background="DarkSeaGreen1")
