@@ -21,8 +21,13 @@ class Visualization:
             max_y = self.wall_thickness+max(edge[0][1],edge[1][1])*(self.cell_thickness + self.wall_thickness)
             img[min_x:max_x+self.cell_thickness,min_y:max_y+self.cell_thickness] = 255
 
-        return Image.fromarray(img)
-        
+        image = Image.fromarray(img)
+        image.save("data/maze.png")
+        return image
+
+
+visualization = Visualization()
+
 
 if __name__ == "__main__":
     a = Visualization()
