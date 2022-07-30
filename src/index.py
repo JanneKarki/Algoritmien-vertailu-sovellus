@@ -6,7 +6,7 @@ def main():
     window = Tk()
 
     window.title("Labyrintin algoritmit")
-    window.geometry("400x200")
+    window.geometry("400x400")
     window.configure(bg="DarkSeaGreen1")
     user_interface = UI(window)
 
