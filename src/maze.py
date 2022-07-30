@@ -6,7 +6,7 @@ import random
 class Maze:
 
     def __init__(self):
-        self.maze_size = 5
+        self.maze_size = 10
         self.graph = {}
         self.graph_edges = []
         self.disjoint_set = {}
@@ -59,6 +59,8 @@ class Maze:
 
                 self.graph_edges.remove(rnd_edge)
 
+        return self.solution
+
     def _find(self, element):
         if self.disjoint_set[element] == element:
             return element
@@ -69,6 +71,8 @@ class Maze:
         _set1 = self._find(element1)
         _set2 = self._find(element2)
         self.disjoint_set[_set1] = _set2
+
+maze = Maze()
 
 if __name__ == "__main__":
     a = Maze()
