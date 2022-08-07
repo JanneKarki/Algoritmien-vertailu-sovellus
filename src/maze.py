@@ -71,10 +71,39 @@ class Maze:
         _set1 = self._find(element1)
         _set2 = self._find(element2)
         self.disjoint_set[_set1] = _set2
+    
+    def maze_in_air_directions(self):
+        air_directions = {}
+        "0,1,2,3"
+        "N,E,S,W"
+        for x in range(self.maze_size):
+            for y in range(self.maze_size):
+                air_directions[(x,y)] = (0,0,0,0)
+        for edge in self.solution:
+            y = (edge[1][0]-edge[0][0])
+            if y == 1: #solusta pääsee alas
+                north = air_directions[edge[0]][0]
+                east = air_directions[edge[0]][1]
+                south = air_directions[edge[0]][2]+y
+                west = air_directions[edge[0]][3]
+                air_directions[edge[0]] = (north,east,south,west) #solusta pääsee alas
+                air_directions[edge[1]] = (north+1,east,south,west) #solusta pääsee ylös
+            x = (edge[1][1]-edge[0][1])
+            if x == 1: #solusta pääsee oikealle
+                north = air_directions[edge[0]][0]
+                east = air_directions[edge[0]][1]+x
+                south = air_directions[edge[0]][2]
+                west = air_directions[edge[0]][3]
+
+                air_directions[edge[0]] = (north,east,south,west) #solusta pääsee oikealle
+                air_directions[edge[1]] = (north,east,south,west+1) #solusta pääsee vasemmalle
+        print(air_directions)    
+
 
 maze = Maze()
 
 if __name__ == "__main__":
     a = Maze()
     a.maze_by_kruskal()
+    a.maze_in_air_directions()
     print(a.solution)
