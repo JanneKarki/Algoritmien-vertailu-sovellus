@@ -6,49 +6,11 @@ south = 2
 west = 3
 
 class WallFollower:
-    def __init__(self, maze_size):
+    def __init__(self):
         self.maze = maze.maze_in_air_directions()
         self.solution = []
-        self.maze_size = maze_size
+        self.maze_size = 5
         print(self.maze)
-
-    def move_down(self, cell):
-        air_directions = self.maze[cell]
-        print(air_directions)
-        if air_directions[south] == 1:
-            print(cell)
-            cell = (cell[0]+1, cell[1])
-          
-            return True, cell
-        return False, cell
-
-    def move_right(self, cell):
-        air_directions = self.maze[cell]
-        print(air_directions)
-        if air_directions[east] == 1:
-            print(cell)
-            cell = (cell[0], cell[1]+1)
-            return True, cell
-        return False, cell
-
-    def move_up(self, cell):
-        air_directions = self.maze[cell]
-        print(air_directions)
-        if air_directions[north] == 1:
-            print(cell)
-            cell = (cell[0]-1, cell[1])
-            return True, cell
-        return False, cell
-
-    def move_left(self, cell):
-        air_directions = self.maze[cell]
-       
-        print(air_directions)
-        if air_directions[west] == 1:
-            print(cell)
-            cell = (cell[0], cell[1]-1)
-            return True, cell
-        return False, cell
 
     def no_wall_in_front(self, cell, moving_direction):
         air_directions = self.maze[cell]
@@ -117,36 +79,8 @@ class WallFollower:
                 print("wall in front, turn left")
                 continue
 
-"""
-            if moving_direction == south:
-                moved, cell = self.move_down(cell)
-                if not moved:
-                    moving_direction = self.where_is_right(moving_direction)
-                    continue
-                
-                 
-            if moving_direction == east:
-                moved, cell = self.move_right(cell)
-                if not moved:
-                    moving_direction = self.where_is_right(moving_direction)
-                    continue
-
-            if moving_direction == north:
-                moved, cell = self.move_up(cell)
-                if not moved:
-                    moving_direction = self.where_is_right(moving_direction)
-                    continue
-
-            if moving_direction == west:
-                moved, cell = self.move_left(cell)
-                if not moved:
-                    moving_direction = self.where_is_right(moving_direction)
-                    continue
-"""        
-        
-
 
 if __name__ == "__main__":
 
-    a = WallFollower(3)
+    a = WallFollower()
     a.solve_maze()
