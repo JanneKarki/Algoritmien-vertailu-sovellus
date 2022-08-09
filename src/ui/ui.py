@@ -33,6 +33,7 @@ class UI:
         heading_label.grid(row=0, column=0)
         maze_label = ttk.Label(master=self._frame, image=self.photo_image)
         maze_label.grid(row=1, column=0 )
+        solve_label = ttk.Label(master=self._frame, text="Ratkaise labyrintti:")
 
         s = ttk.Style()
         s.configure("TFrame", background="DarkSeaGreen1")
@@ -40,4 +41,17 @@ class UI:
         self._frame.grid_columnconfigure(0, weight=1, minsize=150)
         self._frame.pack()
         
+        generate_maze_button = ttk.Button(
+            master=self._frame,
+            text="Luo uusi labyrintti",
+            command="")
+
+        wall_follower_button = ttk.Button(
+            master=self._frame,
+            text="Wall Follower",
+            command="")        
         
+
+        generate_maze_button.grid(row=2, column=0, padx=5, pady=5)
+        wall_follower_button.grid(row=4, column=0, padx=5, pady=5)
+        solve_label.grid(row=3, column=0)
