@@ -18,9 +18,11 @@ class UI:
         self._root = root
         self._frame = ttk.Frame(master=self._root)
         self.maze = maze.maze_by_kruskal()
+        self.maze_air_directed = maze.maze_in_air_directions(self.maze)
         self.image = visualization.draw_maze_image(self.maze)
-        print(type(self.image))
-        self.photo_image = tk.PhotoImage(file="src/data/maze.png")
+        self.wall_follower = WallFollower(self.maze_air_directed)
+        self.image = self.wall_follower.draw_solution()
+        self.photo_image = tk.PhotoImage(file="src/data/solution.png")
 
     def start(self):
         """Alustaa ja näyttää sovelluksen näkymän.

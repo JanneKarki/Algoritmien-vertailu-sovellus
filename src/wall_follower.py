@@ -1,4 +1,5 @@
 from maze import maze
+from PIL import Image, ImageDraw
 
 north = 0
 east = 1
@@ -78,8 +79,14 @@ class WallFollower:
                 print("wall in front, turn left")
                 continue
 
+    def draw_solution(self):
+        self.solve_maze()
+        with Image.open("src/data/maze.png") as im:
 
-if __name__ == "__main__":
-
-    a = WallFollower()
-    a.solve_maze()
+            draw = ImageDraw.Draw(im)
+            last_point = (0,0)
+            for line in self.solution:
+                print(line)
+                draw.line(fill="RGB(44,55,255)", width=5, xy=[(last_point[1]*25+12.5,last_point[0]*25+12.5),(line[1]*25+12.5,line[0]*25+12.5)])
+                last_point = line
+            im.save("src/data/solution.png")
