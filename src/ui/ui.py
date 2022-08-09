@@ -1,7 +1,10 @@
+from visualization import visualization
+from maze import maze
 import tkinter as tk
 from tkinter import StringVar, ttk, constants
 from turtle import bgcolor
 from PIL import Image
+
 
 class UI:
     def __init__(self, root):
@@ -10,12 +13,13 @@ class UI:
         Args:
             root (tkinter.TK): Graafisen käyttöliittymän moduuli.
         """
-        self.photo_image = tk.PhotoImage(file="data/maze.png")
+        self.photo_image = tk.PhotoImage(file="src/data/maze.png")
         self._root = root
         self._frame = ttk.Frame(master=self._root)
+        self.maze = maze.maze_in_air_directions()
+        self.image = visualization.draw_maze_image(self.maze)
         
-     
-        
+
     def start(self):
         """Alustaa ja näyttää sovelluksen näkymän.
         """
