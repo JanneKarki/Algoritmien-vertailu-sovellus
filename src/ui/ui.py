@@ -1,5 +1,5 @@
 from visualization import visualization
-from maze import maze
+from maze import Maze
 from wall_follower import WallFollower
 import tkinter as tk
 from tkinter import StringVar, ttk, constants
@@ -16,9 +16,10 @@ class UI:
         """
       
         self._root = root
+        self.class_maze = Maze(5)
         self._frame = ttk.Frame(master=self._root)
-        self.maze = maze.maze_by_kruskal()
-        self.maze_air_directed = maze.maze_in_air_directions(self.maze)
+        self.maze = self.class_maze.maze_by_kruskal()
+        self.maze_air_directed = self.class_maze.maze_in_air_directions(self.maze)
         self.image = visualization.draw_maze_image(self.maze)
         self.wall_follower = WallFollower(self.maze_air_directed)
         self.image = self.wall_follower.draw_solution()

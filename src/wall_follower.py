@@ -1,4 +1,3 @@
-from maze import maze
 from PIL import Image, ImageDraw
 
 north = 0

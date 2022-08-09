@@ -3,8 +3,8 @@ import random
 class Maze:
     "Luo labyrintin Kruskallin algoritmilla"
 
-    def __init__(self):
-        self.maze_size = 5
+    def __init__(self, size):
+        self.maze_size = size
         self.graph = {}
         self.graph_edges = []
         self.disjoint_set = {}
@@ -110,5 +110,3 @@ class Maze:
                 air_directions[edge[1]] = (north,east,south,west) #solusta pääsee vasemmalle
 
         return air_directions    
-
-maze = Maze()
