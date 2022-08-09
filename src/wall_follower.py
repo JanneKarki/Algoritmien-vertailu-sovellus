@@ -1,4 +1,5 @@
 from PIL import Image, ImageDraw
+import math
 
 north = 0
 east = 1
@@ -9,7 +10,7 @@ class WallFollower:
     def __init__(self, maze):
         self.maze = maze
         self.solution = []
-        self.maze_size = 5
+        self.maze_size = math.sqrt(len(self.maze))
         
 
     def no_wall_in_front(self, cell, moving_direction):
