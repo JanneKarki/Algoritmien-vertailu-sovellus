@@ -13,12 +13,13 @@ class UI:
         Args:
             root (tkinter.TK): Graafisen käyttöliittymän moduuli.
         """
-        self.photo_image = tk.PhotoImage(file="src/data/maze.png")
+      
         self._root = root
         self._frame = ttk.Frame(master=self._root)
-        self.maze = maze.maze_in_air_directions()
+        self.maze = maze.maze_by_kruskal()
         self.image = visualization.draw_maze_image(self.maze)
-        
+        print(type(self.image))
+        self.photo_image = tk.PhotoImage(file="src/data/maze.png")
 
     def start(self):
         """Alustaa ja näyttää sovelluksen näkymän.
