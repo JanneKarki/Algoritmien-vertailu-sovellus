@@ -1,5 +1,5 @@
 # Testausdokumentti
 
-**Testien kattavuus**
+## Testien kattavuus
 
 ![](./pictures/coverage_report.png)
