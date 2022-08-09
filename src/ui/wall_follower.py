@@ -62,7 +62,7 @@ class WallFollower:
         moving_direction = east
         while cell != ((self.maze_size-1,self.maze_size-1)):
             print(cell)
-            
+            self.solution.append(cell)
             if self.try_right(cell, moving_direction):
                 moving_direction = self.turn_where_is_right(moving_direction)
                 cell = self.move_forward(cell, moving_direction)

@@ -5,16 +5,17 @@ import numpy as np
 class Visualization:
 
     def __init__(self):
-        self.maze_size = 10
+        self.maze_size = 5
         self.cell_thickness = 20
         self.wall_thickness = 5
         self.maze = maze.maze_by_kruskal()
+        print(self.maze)
 
-    def draw_maze_image(self):
+    def draw_maze_image(self, maze):
         img = np.zeros((self.maze_size * (self.cell_thickness + self.wall_thickness) + self.wall_thickness,
                 self.maze_size * (self.cell_thickness + self.wall_thickness) + self.wall_thickness),dtype=np.uint8)
 
-        for edge in self.maze:
+        for edge in maze:
             min_x = self.wall_thickness+min(edge[0][0],edge[1][0])*(self.cell_thickness + self.wall_thickness)
             max_x = self.wall_thickness+max(edge[0][0],edge[1][0])*(self.cell_thickness + self.wall_thickness)
             min_y = self.wall_thickness+min(edge[0][1],edge[1][1])*(self.cell_thickness + self.wall_thickness)
@@ -22,14 +23,8 @@ class Visualization:
             img[min_x:max_x+self.cell_thickness,min_y:max_y+self.cell_thickness] = 255
 
         image = Image.fromarray(img)
-        image.save("data/maze.png")
+        image.save("src/data/maze.png")
         return image
 
 
 visualization = Visualization()
-
-
-if __name__ == "__main__":
-    a = Visualization()
-    image = a.draw_maze_image()
-    image.show()    

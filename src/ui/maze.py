@@ -6,7 +6,7 @@ import random
 class Maze:
 
     def __init__(self):
-        self.maze_size = 3
+        self.maze_size = 5
         self.graph = {}
         self.graph_edges = []
         self.disjoint_set = {}
@@ -117,10 +117,3 @@ class Maze:
 
 
 maze = Maze()
-
-if __name__ == "__main__":
-    a = Maze()
-    a.maze_by_kruskal()
-    suunnat = a.maze_in_air_directions()
-    print(a.solution)
-    print(suunnat)
