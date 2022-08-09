@@ -1,5 +1,6 @@
 from visualization import visualization
 from maze import maze
+from wall_follower import WallFollower
 import tkinter as tk
 from tkinter import StringVar, ttk, constants
 from turtle import bgcolor

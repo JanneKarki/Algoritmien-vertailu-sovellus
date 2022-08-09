@@ -6,11 +6,11 @@ south = 2
 west = 3
 
 class WallFollower:
-    def __init__(self):
-        self.maze = maze.maze_in_air_directions()
+    def __init__(self, maze):
+        self.maze = maze
         self.solution = []
         self.maze_size = 5
-        print(self.maze)
+        
 
     def no_wall_in_front(self, cell, moving_direction):
         air_directions = self.maze[cell]
@@ -61,7 +61,6 @@ class WallFollower:
         cell = start
         moving_direction = east
         while cell != ((self.maze_size-1,self.maze_size-1)):
-            print(cell)
             self.solution.append(cell)
             if self.try_right(cell, moving_direction):
                 moving_direction = self.turn_where_is_right(moving_direction)

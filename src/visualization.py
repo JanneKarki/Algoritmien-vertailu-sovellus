@@ -24,5 +24,4 @@ class Visualization:
         image.save("src/data/maze.png")
         return image
 
-
 visualization = Visualization()

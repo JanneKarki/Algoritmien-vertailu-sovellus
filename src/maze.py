@@ -1,9 +1,7 @@
-
-"Luo labyrintin"
-
 import random
 
 class Maze:
+    "Luo labyrintin Kruskallin algoritmilla"
 
     def __init__(self):
         self.maze_size = 5
@@ -58,7 +56,7 @@ class Maze:
                 self.solution.append(rnd_edge)
 
                 self.graph_edges.remove(rnd_edge)
-
+        
         return self.solution
 
     def _find(self, element):
@@ -72,9 +70,7 @@ class Maze:
         _set2 = self._find(element2)
         self.disjoint_set[_set1] = _set2
     
-    def maze_in_air_directions(self): #korjaa tämä. Ei mene nyt oikein vaan menee rajojen ulkopuolelle
-        self.maze_by_kruskal()
-        print(self.solution)
+    def maze_in_air_directions(self, maze):
         air_directions = {}
         "0,1,2,3"
         "N,E,S,W"
@@ -82,7 +78,7 @@ class Maze:
             for y in range(self.maze_size):
                 air_directions[(x,y)] = (0,0,0,0)
 
-        for edge in self.solution:
+        for edge in maze:
             x = (edge[1][0]-edge[0][0])
 
             if x == 1: #solusta pääsee alas
@@ -114,6 +110,5 @@ class Maze:
                 air_directions[edge[1]] = (north,east,south,west) #solusta pääsee vasemmalle
 
         return air_directions    
-
 
 maze = Maze()
