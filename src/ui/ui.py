@@ -2,8 +2,7 @@ from visualization import visualization
 from maze import Maze
 from wall_follower import WallFollower
 import tkinter as tk
-from tkinter import StringVar, ttk, constants
-from turtle import bgcolor
+from tkinter import ttk
 from PIL import Image
 
 
@@ -23,7 +22,11 @@ class UI:
         self.image = visualization.draw_maze_image(self.maze, 5)
         self.wall_follower = WallFollower(self.maze_air_directed)
         self.image = self.wall_follower.draw_solution()
-        self.photo_image = tk.PhotoImage(file="src/data/solution.png")
+        self.photo_image = tk.PhotoImage(file="src/data/maze.png")
+        self.maze_label = ttk.Label(master=self._frame, image=self.photo_image)
+        
+        #self.photo_variable = None
+        #self.photo_label = None
 
     def start(self):
         """Alustaa ja näyttää sovelluksen näkymän.
@@ -31,8 +34,8 @@ class UI:
 
         heading_label = ttk.Label(master=self._frame, text="Labyrintti")
         heading_label.grid(row=0, column=0)
-        maze_label = ttk.Label(master=self._frame, image=self.photo_image)
-        maze_label.grid(row=1, column=0 )
+   
+        self.maze_label.grid(row=1, column=0 )
         solve_label = ttk.Label(master=self._frame, text="Ratkaise labyrintti:")
 
         s = ttk.Style()
@@ -49,9 +52,21 @@ class UI:
         wall_follower_button = ttk.Button(
             master=self._frame,
             text="Wall Follower",
-            command="")        
-        
+            command=self.load_photo)        
 
-        generate_maze_button.grid(row=2, column=0, padx=5, pady=5)
-        wall_follower_button.grid(row=4, column=0, padx=5, pady=5)
-        solve_label.grid(row=3, column=0)
+
+        generate_maze_button.grid(row=3, column=0, padx=5, pady=5)
+        solve_label.grid(row=4, column=0)
+        wall_follower_button.grid(row=5, column=0, padx=5, pady=5)
+        
+      
+
+    def load_solved_maze(self):
+        solved_maze = tk.PhotoImage(file="src/data/solution.png")
+        print(solved_maze)
+        self.photo_variable.set(solved_maze)
+
+    def load_photo(self):
+        photo = tk.PhotoImage(file="src/data/solution.png")
+        self.maze_label.configure(image=photo)
+        self._root.mainloop()
