@@ -1,2 +1,5 @@
 __pycache__/
-
+.coverage
+htmlcov
+src/data/solution.png
+src/data/maze.png
