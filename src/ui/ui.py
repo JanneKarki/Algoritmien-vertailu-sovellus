@@ -15,18 +15,16 @@ class UI:
         """
       
         self._root = root
-        self.class_maze = Maze(5)
+        self.class_maze = Maze(10)
         self._frame = ttk.Frame(master=self._root)
         self.maze = self.class_maze.maze_by_kruskal()
         self.maze_air_directed = self.class_maze.maze_in_air_directions(self.maze)
-        self.image = visualization.draw_maze_image(self.maze, 5)
+        self.image = visualization.draw_maze_image(self.maze, 10)
         self.wall_follower = WallFollower(self.maze_air_directed)
         self.image = self.wall_follower.draw_solution()
         self.photo_image = tk.PhotoImage(file="src/data/maze.png")
         self.maze_label = ttk.Label(master=self._frame, image=self.photo_image)
-        
-        #self.photo_variable = None
-        #self.photo_label = None
+
 
     def start(self):
         """Alustaa ja näyttää sovelluksen näkymän.
