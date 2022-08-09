@@ -8,8 +8,6 @@ class Visualization:
         self.maze_size = 5
         self.cell_thickness = 20
         self.wall_thickness = 5
-        self.maze = maze.maze_by_kruskal()
-        print(self.maze)
 
     def draw_maze_image(self, maze):
         img = np.zeros((self.maze_size * (self.cell_thickness + self.wall_thickness) + self.wall_thickness,
