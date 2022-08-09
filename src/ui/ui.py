@@ -20,7 +20,7 @@ class UI:
         self._frame = ttk.Frame(master=self._root)
         self.maze = self.class_maze.maze_by_kruskal()
         self.maze_air_directed = self.class_maze.maze_in_air_directions(self.maze)
-        self.image = visualization.draw_maze_image(self.maze)
+        self.image = visualization.draw_maze_image(self.maze, 5)
         self.wall_follower = WallFollower(self.maze_air_directed)
         self.image = self.wall_follower.draw_solution()
         self.photo_image = tk.PhotoImage(file="src/data/solution.png")

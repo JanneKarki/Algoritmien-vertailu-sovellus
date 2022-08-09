@@ -1,16 +1,15 @@
 from PIL import Image
 import numpy as np
-
+import math
 class Visualization:
 
     def __init__(self):
-        self.maze_size = 5
         self.cell_thickness = 20
         self.wall_thickness = 5
 
-    def draw_maze_image(self, maze):
-        img = np.zeros((self.maze_size * (self.cell_thickness + self.wall_thickness) + self.wall_thickness,
-                self.maze_size * (self.cell_thickness + self.wall_thickness) + self.wall_thickness),dtype=np.uint8)
+    def draw_maze_image(self, maze, maze_size):
+        img = np.zeros((maze_size * (self.cell_thickness + self.wall_thickness) + self.wall_thickness,
+                maze_size * (self.cell_thickness + self.wall_thickness) + self.wall_thickness),dtype=np.uint8)
 
         for edge in maze:
             min_x = self.wall_thickness+min(edge[0][0],edge[1][0])*(self.cell_thickness + self.wall_thickness)
