@@ -79,6 +79,9 @@ class WallFollower:
                 print("wall in front, turn left")
                 continue
 
+        last_step = (self.maze_size-1,self.maze_size-1)
+        self.solution.append(last_step)
+
     def draw_solution(self):
         self.solve_maze()
         with Image.open("src/data/maze.png") as im:
