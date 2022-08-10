@@ -19,7 +19,7 @@ class Visualization:
             img[min_x:max_x+self.cell_thickness,min_y:max_y+self.cell_thickness] = 255
 
         image = Image.fromarray(img)
-        image.save("src/data/maze.png")
+        image.save("./src/data/maze.png")
         return image
 
 visualization = Visualization()
