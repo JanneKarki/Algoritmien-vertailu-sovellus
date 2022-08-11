@@ -63,7 +63,7 @@ class UI:
         self._root.mainloop()
         
     def handle_new_maze_click(self):
-        self.load_new_maze( 50)
+        self.load_new_maze(10)
 
     def load_new_maze(self, maze_size):
         self.class_maze = Maze(maze_size)

@@ -5,7 +5,7 @@ class Visualization:
 
     def __init__(self):
         self.cell_thickness = 20
-        self.wall_thickness = 5
+        self.wall_thickness = 6
 
     def draw_maze_image(self, maze, maze_size):
         print(maze_size)

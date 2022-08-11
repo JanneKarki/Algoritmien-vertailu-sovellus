@@ -11,10 +11,10 @@ class WallFollower:
         self.maze = maze
         self.solution = []
         self.maze_size = math.sqrt(len(self.maze))
-        self.wall_thickness = 5
+        self.wall_thickness = 6
         self.cell_thickness = 20
-        self.total_cell_thickness = 25
-        self.cell_center = 12.5
+        self.total_cell_thickness = 26
+        self.cell_center = 13
         
 
     def no_wall_in_front(self, cell, moving_direction):
