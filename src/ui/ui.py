@@ -20,13 +20,14 @@ class UI:
         self.generated_maze = None
         self.air_directed_maze = None  
         self.maze_label = ttk.Label(master=self._frame, image=None)
+        self.size_entry = None
 
     def start(self):
         """Alustaa sovelluksen näkymän.
         """     
 
         heading_label = ttk.Label(master=self._frame, text="Labyrintti")
-        heading_label.grid(row=0, column=0)
+        
         solve_label = ttk.Label(master=self._frame, text="Ratkaise labyrintti:")
 
         s = ttk.Style()
@@ -36,21 +37,26 @@ class UI:
         generate_maze_button = ttk.Button(
             master=self._frame,
             text="Luo uusi labyrintti",
-            command=self.handle_new_maze_click)
+            command=self.load_new_maze)
 
         wall_follower_button = ttk.Button(
             master=self._frame,
             text="Wall Follower",
-            command=self.wall_follower)        
+            command=self.wall_follower)
 
-        self.maze_label.grid(row=1, column=0 )
-        generate_maze_button.grid(row=3, column=0, padx=5, pady=5)
-        solve_label.grid(row=4, column=0)
-        wall_follower_button.grid(row=5, column=0, padx=5, pady=5)
+        heading_label.grid(row=0, column=0)
+        self.maze_label.grid(row=1, column=0, ipady=20)
+        generate_maze_button.grid(row=4, column=0, padx=5, pady=5)
+        solve_label.grid(row=5, column=0)
+        wall_follower_button.grid(row=6, column=0, padx=5, pady=5)
 
         self._frame.grid_columnconfigure(0, weight=1, minsize=150)
         self._frame.pack()
-        
+
+        size_label = ttk.Label(master=self._frame, text="Labyrintin koko:")
+        size_label.grid(row=2, column=0, padx=5, pady=5)
+        self.size_entry = ttk.Entry(master=self._frame)
+        self.size_entry.grid(row=3, column=0)
 
     def wall_follower(self):
         wall_follower = WallFollower(self.air_directed_maze)
@@ -65,7 +71,9 @@ class UI:
     def handle_new_maze_click(self):
         self.load_new_maze(10)
 
-    def load_new_maze(self, maze_size):
+
+    def load_new_maze(self):
+        maze_size = int(self.size_entry.get())
         self.class_maze = Maze(maze_size)
         self.generated_maze = self.class_maze.solution
         self.air_directed_maze = self.class_maze.air_directed_maze
