@@ -34,7 +34,8 @@ class Visualization:
             if self.wall_thickness < 1:
                 self.wall_thickness = 1
         else:
-            return 
+            self.cell_thickness = 20
+            self.wall_thickness = 6
 
 
 visualization = Visualization()

@@ -117,4 +117,5 @@ class WallFollower:
             self.total_cell_thickness = round(self.cell_thickness+self.wall_thickness)
             self.cell_center = round(self.total_cell_thickness/2)
         else:
-            return
+            self.cell_thickness = 20
+            self.wall_thickness = 6
