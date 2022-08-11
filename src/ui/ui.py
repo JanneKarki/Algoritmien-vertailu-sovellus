@@ -25,8 +25,6 @@ class UI:
     def start(self):
         """Alustaa sovelluksen näkymän.
         """     
-
-        heading_label = ttk.Label(master=self._frame, text="Labyrintti")
         
         solve_label = ttk.Label(master=self._frame, text="Ratkaise labyrintti:")
 
@@ -44,10 +42,9 @@ class UI:
             text="Wall Follower",
             command=self.wall_follower)
 
-        heading_label.grid(row=0, column=0)
-        self.maze_label.grid(row=1, column=0, ipady=20)
-        generate_maze_button.grid(row=4, column=0, padx=5, pady=5)
-        solve_label.grid(row=5, column=0)
+        self.maze_label.grid(row=1, column=0, ipady=5, padx=5, pady=5)
+        generate_maze_button.grid(row=4, column=0, padx=5, pady=10)
+        solve_label.grid(row=5, column=0, pady=20)
         wall_follower_button.grid(row=6, column=0, padx=5, pady=5)
 
         self._frame.grid_columnconfigure(0, weight=1, minsize=150)
