@@ -8,6 +8,8 @@ class Visualization:
         self.wall_thickness = 5
 
     def draw_maze_image(self, maze, maze_size):
+        print(maze_size)
+        self.adjust_image_size(maze_size)
         img = np.zeros((maze_size * (self.cell_thickness + self.wall_thickness) + self.wall_thickness,
                 maze_size * (self.cell_thickness + self.wall_thickness) + self.wall_thickness),dtype=np.uint8)
         image_size = (maze_size * (self.cell_thickness + self.wall_thickness) + self.wall_thickness)
@@ -23,5 +25,16 @@ class Visualization:
         image = Image.fromarray(img)
         image.save("src/data/maze.png")
         return image
+
+    def adjust_image_size(self, maze_size):
+        if maze_size > 10:
+            print("Big")
+            self.cell_thickness = int((10/maze_size)*20)
+            self.wall_thickness = int((10/maze_size)*5)
+            if self.wall_thickness < 1:
+                self.wall_thickness = 1
+        else:
+            return 
+
 
 visualization = Visualization()

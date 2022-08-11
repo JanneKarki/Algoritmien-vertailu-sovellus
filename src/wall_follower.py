@@ -11,6 +11,10 @@ class WallFollower:
         self.maze = maze
         self.solution = []
         self.maze_size = math.sqrt(len(self.maze))
+        self.wall_thickness = 5
+        self.cell_thickness = 20
+        self.total_cell_thickness = 25
+        self.cell_center = 12.5
         
 
     def no_wall_in_front(self, cell, moving_direction):
@@ -78,11 +82,12 @@ class WallFollower:
                 moving_direction = self.turn_where_is_left(moving_direction)
                 print("wall in front, turn left")
                 continue
-
+            
         last_step = (self.maze_size-1,self.maze_size-1)
         self.solution.append(last_step)
 
     def draw_solution(self):
+        self.adjust_solution_size()
         self.solve_maze()
         with Image.open("src/data/maze.png") as im:
 
@@ -90,6 +95,26 @@ class WallFollower:
             last_point = (0,0)
             for line in self.solution:
                 print(line)
-                draw.line(fill="RGB(44,55,255)", width=5, xy=[(last_point[1]*25+12.5,last_point[0]*25+12.5),(line[1]*25+12.5,line[0]*25+12.5)])
+                draw.line(
+                          fill="RGB(44,55,255)",
+                          width=self.wall_thickness,
+                          xy=[(last_point[1]*self.total_cell_thickness+self.cell_center,
+                             last_point[0]*self.total_cell_thickness+self.cell_center),
+                             (line[1]*self.total_cell_thickness+self.cell_center,
+                             line[0]*self.total_cell_thickness+self.cell_center)
+                             ]
+                            )
+                
                 last_point = line
             im.save("src/data/solution.png")
+
+    def adjust_solution_size(self):
+        if self.maze_size > 10:
+            self.cell_thickness = int((10/self.maze_size)*20)
+            self.wall_thickness = int((10/self.maze_size)*5)
+            if self.wall_thickness < 1:
+                self.wall_thickness = 1
+            self.total_cell_thickness = round(self.cell_thickness+self.wall_thickness)
+            self.cell_center = round(self.total_cell_thickness/2)
+        else:
+            return
