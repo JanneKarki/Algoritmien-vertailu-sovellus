@@ -65,10 +65,6 @@ class UI:
         self.maze_label.configure(image=photo)
         self._root.mainloop()
         
-    def handle_new_maze_click(self):
-        self.load_new_maze(10)
-
-
     def load_new_maze(self):
         maze_size = int(self.size_entry.get())
         self.class_maze = Maze(maze_size)
