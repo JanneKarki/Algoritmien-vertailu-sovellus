@@ -30,7 +30,7 @@ class Visualization:
         if maze_size > 10:
             print("Big")
             self.cell_thickness = int((10/maze_size)*20)
-            self.wall_thickness = int((10/maze_size)*5)
+            self.wall_thickness = int((10/maze_size)*6)
             if self.wall_thickness < 1:
                 self.wall_thickness = 1
         else:

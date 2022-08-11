@@ -111,7 +111,7 @@ class WallFollower:
     def adjust_solution_size(self):
         if self.maze_size > 10:
             self.cell_thickness = int((10/self.maze_size)*20)
-            self.wall_thickness = int((10/self.maze_size)*5)
+            self.wall_thickness = int((10/self.maze_size)*6)
             if self.wall_thickness < 1:
                 self.wall_thickness = 1
             self.total_cell_thickness = round(self.cell_thickness+self.wall_thickness)
