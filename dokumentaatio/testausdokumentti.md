@@ -2,4 +2,4 @@
 
 ## Testien kattavuus
 
-![](./pictures/coverage_report.png)
+![](./pictures/coverage_report2.png)
