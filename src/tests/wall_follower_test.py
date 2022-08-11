@@ -5,8 +5,8 @@ from wall_follower import WallFollower
 class TestWallFollower(unittest.TestCase):
     def setUp(self):
         self.class_maze = Maze(5)
-        self.kruskal_maze = self.class_maze.maze_by_kruskal()
-        self.air_directed_maze = self.class_maze.maze_in_air_directions(self.kruskal_maze)
+        self.kruskal_maze = self.class_maze.solution
+        self.air_directed_maze = self.class_maze.air_directed_maze
         self.wall_follower = WallFollower(self.air_directed_maze)
 
     def test_solution_is_empty_at_start(self):
@@ -64,3 +64,12 @@ class TestWallFollower(unittest.TestCase):
         self.assertEqual(True, left_moving_south)
         self.assertEqual(True, left_moving_west)
 
+    def test_solution_size_is_adjusted_to_fit_in_maze(self):
+        maze_size = 20
+        maze = Maze(maze_size)
+        wall_follower = WallFollower(maze.air_directed_maze)
+        wall_follower.draw_solution()
+        cell_thickness = int((10/maze_size)*20)
+        wall_thickness = int((10/maze_size)*6)
+        self.assertEqual(wall_follower.cell_thickness, cell_thickness)
+        self.assertEqual(wall_follower.wall_thickness, wall_thickness)
