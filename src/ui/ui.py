@@ -98,6 +98,7 @@ class UI:
         
         
     def load_new_maze(self):
+        self.hide_results()
         maze_size = int(self.size_entry.get())
         self.class_maze = Maze(maze_size)
         self.generated_maze = self.class_maze.solution
@@ -108,4 +109,6 @@ class UI:
         self._root.mainloop()
 
   
-        
+    def hide_results(self):
+        self.wall_follower_steps_label.grid_remove()
+        self.wall_follower_time_label.grid_remove()
