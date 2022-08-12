@@ -1,5 +1,6 @@
 from PIL import Image, ImageDraw
 import math
+import time
 
 north = 0
 east = 1
@@ -15,6 +16,7 @@ class WallFollower:
         self.cell_thickness = 20
         self.total_cell_thickness = 26
         self.cell_center = 13
+        self.elapsed_time = None
         
 
     def no_wall_in_front(self, cell, moving_direction):
@@ -65,26 +67,29 @@ class WallFollower:
         start = 0,0
         cell = start
         moving_direction = east
+        start_time = time.time()
         while cell != ((self.maze_size-1,self.maze_size-1)):
             self.solution.append(cell)
             if self.try_right(cell, moving_direction):
                 moving_direction = self.turn_where_is_right(moving_direction)
                 cell = self.move_forward(cell, moving_direction)
-                print("turned and moved to right")
+                #print("turned and moved to right")
                 continue
 
             if self.no_wall_in_front(cell, moving_direction):    
                 cell = self.move_forward(cell, moving_direction)
-                print("no wall in front")
+                #print("no wall in front")
                 continue
             
             else:
                 moving_direction = self.turn_where_is_left(moving_direction)
-                print("wall in front, turn left")
+                #print("wall in front, turn left")
                 continue
-            
+        end_time = time.time()
         last_step = (self.maze_size-1,self.maze_size-1)
         self.solution.append(last_step)
+
+        self.count_time(start_time, end_time)
 
     def draw_solution(self):
         self.adjust_solution_size()
@@ -94,7 +99,6 @@ class WallFollower:
             draw = ImageDraw.Draw(im)
             last_point = (0,0)
             for line in self.solution:
-                print(line)
                 draw.line(
                           fill="RGB(44,55,255)",
                           width=self.wall_thickness,
@@ -119,3 +123,8 @@ class WallFollower:
         else:
             self.cell_thickness = 20
             self.wall_thickness = 6
+
+    def count_time(self, start_time, end_time):
+        elapsed_time = end_time-start_time
+        self.elapsed_time = elapsed_time
+        print(elapsed_time)
