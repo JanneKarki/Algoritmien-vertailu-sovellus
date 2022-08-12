@@ -69,16 +69,18 @@ class WallFollower:
         moving_direction = east
         start_time = time.time()
         while cell != ((self.maze_size-1,self.maze_size-1)):
-            self.solution.append(cell)
+            
             if self.try_right(cell, moving_direction):
                 moving_direction = self.turn_where_is_right(moving_direction)
                 cell = self.move_forward(cell, moving_direction)
+                self.solution.append(cell)
                 #print("turned and moved to right")
                 continue
 
             if self.no_wall_in_front(cell, moving_direction):    
                 cell = self.move_forward(cell, moving_direction)
                 #print("no wall in front")
+                self.solution.append(cell)
                 continue
             
             else:
@@ -88,6 +90,7 @@ class WallFollower:
         end_time = time.time()
         last_step = (self.maze_size-1,self.maze_size-1)
         self.solution.append(last_step)
+        print(len(self.solution))
 
         self.count_time(start_time, end_time)
 
@@ -125,6 +128,6 @@ class WallFollower:
             self.wall_thickness = 6
 
     def count_time(self, start_time, end_time):
-        elapsed_time = end_time-start_time
+        elapsed_time = "{0:.5f}".format(end_time-start_time)
         self.elapsed_time = elapsed_time
         print(elapsed_time)

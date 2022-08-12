@@ -24,6 +24,8 @@ class UI:
         self.size_entry = None
         self.wall_follower_time = None
         self.wall_follower_time_label = None
+        self.wall_follower_steps = None
+        self.wall_follower_steps_label = None
 
 
     def start(self):
@@ -43,6 +45,12 @@ class UI:
         self.wall_follower_time_label = ttk.Label(
             master=self._frame,
             textvariable=self.wall_follower_time,
+            foreground="red")
+        #step label
+        self.wall_follower_steps = StringVar(self._frame)
+        self.wall_follower_steps_label = ttk.Label(
+            master=self._frame,
+            textvariable=self.wall_follower_steps,
             foreground="red")
         
         generate_maze_button = ttk.Button(
@@ -66,6 +74,7 @@ class UI:
         self.size_entry = ttk.Entry(master=self._frame)
         self.size_entry.grid(row=3, column=0)
         self.wall_follower_time_label.grid(row=7, column=0)
+        self.wall_follower_steps_label.grid(row=8, column=0)
 
 
       
@@ -74,9 +83,10 @@ class UI:
         wall_follower = WallFollower(self.air_directed_maze)
         wall_follower.draw_solution()
         
-        self.wall_follower_time.set(str(wall_follower.elapsed_time))
-        print(self.wall_follower_time.get(), "asetettu varable")
+        self.wall_follower_time.set(str(wall_follower.elapsed_time) + " sekuntia")
+        self.wall_follower_steps.set(str(len(wall_follower.solution))+ " askelta")
         self.wall_follower_time_label.grid()
+        self.wall_follower_steps_label.grid()
         self.show_solution()
         
 
