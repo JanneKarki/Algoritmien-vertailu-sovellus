@@ -1,0 +1,13 @@
+Viikkoraportti 4
+
+
+Tällä viikolla sain edistettyä projektia roimasti. Rakensin toimivan version "wall follower" algoritmista, joka seurailee oikean puoleista seinustaa. Algoritmia varten tein funktion joka muuttaa Kruskallin algortmin luoman labyrintin setiksi, jossa jokaisesta solusta on tieto mihin ilmansuuntaan siitä on pääsy. 
+
+
+Sovellukselle rakensin lähes valmiin näkymän, jossa voi antaa syötteenä labyrintin koon ja nappia painamalla muodostaa labyrintin. Labyrintin voi sitten ratkaista "wall follower"-algoritmilla ja sen ratkaisema reitti ilmestyy labyrintin kuvaan, sekä siihen kulunut aika ja askeleet tulevat näkyville.
+
+Luokille WallFollower ja Maze rakensin myös testit ja testien kattavuusraportin lisäsin testiraporttin.
+
+Ehdin myös tutustumaan Tremaux algoritmiin ja aloittamaan sen suunnittelun. Seuraavaksi on tarkoitus saasa siitä aikaiseksi toimiva versio ja lisätä sen toiminnallisuus sitten sovelluksen näkymään.
+
+Työaika 22h
