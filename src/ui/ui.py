@@ -26,6 +26,8 @@ class UI:
         self.wall_follower_time_label = None
         self.wall_follower_steps = None
         self.wall_follower_steps_label = None
+        self.maze_time = None
+        self.maze_time_label = None
 
 
     def start(self):
@@ -40,7 +42,7 @@ class UI:
         self._frame.grid_columnconfigure(0, weight=1, minsize=150)
         
 
-        #time label
+        #wall_followe_time label
         self.wall_follower_time = StringVar(self._frame)
         self.wall_follower_time_label = ttk.Label(
             master=self._frame,
@@ -51,6 +53,12 @@ class UI:
         self.wall_follower_steps_label = ttk.Label(
             master=self._frame,
             textvariable=self.wall_follower_steps,
+            foreground="red")
+
+        self.maze_time = StringVar(self._frame)
+        self.maze_time_label = ttk.Label(
+            master=self._frame,
+            textvariable=self.maze_time,
             foreground="red")
         
         generate_maze_button = ttk.Button(
@@ -65,16 +73,18 @@ class UI:
 
         self.maze_label.grid(row=1, column=0, ipady=5, padx=5, pady=5)
         generate_maze_button.grid(row=4, column=0, padx=5, pady=10)
-        solve_label.grid(row=5, column=0, pady=20)
-        wall_follower_button.grid(row=6, column=0, padx=5, pady=5)
+        self.maze_time_label.grid(row=5, column=0)
+        solve_label.grid(row=6, column=0, pady=20)
+        wall_follower_button.grid(row=7, column=0, padx=5, pady=5)
 
 
         size_label = ttk.Label(master=self._frame, text="Labyrintin koko:")
         size_label.grid(row=2, column=0, padx=5, pady=5)
         self.size_entry = ttk.Entry(master=self._frame)
         self.size_entry.grid(row=3, column=0)
-        self.wall_follower_time_label.grid(row=7, column=0)
-        self.wall_follower_steps_label.grid(row=8, column=0)
+        self.wall_follower_time_label.grid(row=8, column=0)
+        self.wall_follower_steps_label.grid(row=9, column=0)
+        
 
 
 
@@ -112,6 +122,8 @@ class UI:
         visualization.draw_maze_image(self.generated_maze, maze_size)
         photo = tk.PhotoImage(file="src/data/maze.png")
         self.maze_label.configure(image=photo)
+        self.maze_time.set("Aikaa kului " + str(self.class_maze.elapsed_time) + " sekuntia")
+        self.maze_time_label.grid()
         self._root.mainloop()
 
   
