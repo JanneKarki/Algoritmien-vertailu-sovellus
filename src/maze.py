@@ -1,4 +1,5 @@
 import random
+import time
 
 class Maze:
     "Luokka, joka luo syklittömän, neliön labyrintin Kruskallin algoritmilla"
@@ -15,12 +16,14 @@ class Maze:
         self.disjoint_set = {}
         self.solution = []
         self.air_directed_maze = {}
+        self.elapsed_time = 0
 
         self.maze_by_kruskal()
 
     def maze_by_kruskal(self):
         """Kruskalin algortmi, joka luo syklittömän labyrintin.
         """
+        start_time = time.time()
         for x in range (0, self.maze_size):
             for y in range (0, self.maze_size):
                 node = (x,y)
@@ -61,6 +64,9 @@ class Maze:
                 self.solution.append(rnd_edge)
 
                 self.graph_edges.remove(rnd_edge)
+        
+        end_time = time.time()
+        self.count_time(start_time, end_time)
         
         self.maze_in_air_directions(self.solution)
 
@@ -127,3 +133,13 @@ class Maze:
                 self.air_directed_maze[edge[1]] = (north,east,south,west)
 
         return self.air_directed_maze    
+
+    def count_time(self, start_time, end_time):
+        """Laskee labyrintin muodostamiseen kuluneen ajan.
+
+        Args:
+            start_time (float): Ratkaisun aloitusaika.
+            end_time (float): Ratkaisun valmistumisaika.
+        """
+        elapsed_time = "{0:.5f}".format(end_time-start_time)
+        self.elapsed_time = elapsed_time
