@@ -61,7 +61,7 @@ class UI:
         wall_follower_button = ttk.Button(
             master=self._frame,
             text="Wall Follower",
-            command=self.wall_follower)
+            command=self.handle_wall_follower)
 
         self.maze_label.grid(row=1, column=0, ipady=5, padx=5, pady=5)
         generate_maze_button.grid(row=4, column=0, padx=5, pady=10)
@@ -77,9 +77,11 @@ class UI:
         self.wall_follower_steps_label.grid(row=8, column=0)
 
 
-      
 
-    def wall_follower(self):
+    def handle_wall_follower(self):
+        """Ratkaisee labyrintin "Wall Follower"-algoritmilla ja piirtää
+           sen labyrintin kuvaan, sekä asettaa sen näykyville. 
+        """
         wall_follower = WallFollower(self.air_directed_maze)
         wall_follower.draw_solution()
         
@@ -92,12 +94,16 @@ class UI:
 
 
     def show_solution(self):
+        """Lataa piirretyn ratkaisun kuvan ja asettaa sen näkyviin.
+        """
         photo = tk.PhotoImage(file="src/data/solution.png")
         self.maze_label.configure(image=photo)
         self._root.mainloop()
         
         
     def load_new_maze(self):
+        """Lataa uuden labyrintin, tallentaa sen kuvana ja asettaa myös näkyville.
+        """
         self.hide_results()
         maze_size = int(self.size_entry.get())
         self.class_maze = Maze(maze_size)
@@ -110,5 +116,7 @@ class UI:
 
   
     def hide_results(self):
+        """Piilottaa ratkaisun tulokset
+        """
         self.wall_follower_steps_label.grid_remove()
         self.wall_follower_time_label.grid_remove()
