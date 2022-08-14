@@ -1,3 +1,4 @@
+from explore import Explore
 from PIL import Image, ImageDraw
 import math
 import time
@@ -28,95 +29,10 @@ class WallFollower:
         self.total_cell_thickness = 26
         self.cell_center = 13
         self.elapsed_time = None
+        self.explore = Explore(self.maze)
         
 
-    def no_wall_in_front(self, cell, moving_direction):
-        """Tarkistaa onko edessä seinää. Jos on, palauttaa False, muuten True.
-
-        Args:
-            cell (tuple): Solu jossa algoritmi on etenemässä.
-            moving_direction (int): Suunta johon ollaan kulkemassa.
-
-        Returns:
-            boolean: Palauttaa True, jos edessä ei ole seinää, muuten False.
-        """
-        air_directions = self.maze[cell]
-        if air_directions[moving_direction] == 1:  
-            return True
-        return False    
-    
-    def try_right(self, cell, moving_direction):
-        """Tarkistaa voko solusta kääntyä oikealle.
-
-        Args:
-            cell (tuple): Solu jossa algorimti on etenemässä.
-            moving_direction (int): Suunta, johon ollaan kulkemassa.
-
-        Returns:
-            Boolean: Palauttaa True, jos oikealle voi kulkea, muuten palauttaa False.
-        """
-        air_directions = self.maze[cell]
-        right = self.turn_where_is_right(moving_direction)
-        if air_directions[right] == 1:  
-            return True
-        return False
-
-    def turn_where_is_right(self, moving_direction):
-        """Palauttaa ilmansuunnan, joka on kulkusuunnasta oikealla.
-
-        Args:
-            moving_direction (int): Suunta, johon ollaan kulkemassa.
-
-        Returns:
-            int: Palauttaa kulkusuunnasta oikealla olevan ilmansuunnan. 
-        """
-        if moving_direction == north:
-            return east 
-        if moving_direction == east:
-            return south
-        if moving_direction == south:
-            return west
-        if moving_direction == west:
-            return north
-
-    def turn_where_is_left(self, moving_direction):
-        """Palauttaa ilmansuunnan, joka on kulkusuunnasta vasemmalla.
-
-        Args:
-            moving_direction (int): Suunta, johon ollaan kulkemassa.
-
-        Returns:
-            int: Palauttaa kulkusuunnasta vasemmalla olevan ilmansuunnan.
-        """
-        if moving_direction == north:
-            return west 
-        if moving_direction == east:
-            return north
-        if moving_direction == south:
-            return east
-        if moving_direction == west:
-            return south
-
-    def move_forward(self, cell, moving_direction):
-        """Siirtää algoritmin seuraavaan soluun.
-
-        Args:
-            cell (tuple): Solu, jossa nyt ollaan.
-            moving_direction (int): Suunta johon ollaan etenemässä.
-
-        Returns:
-            tuple: Palauttaa solun johon siirryttiin.
-        """
-        if moving_direction == north:
-            cell = (cell[0]-1, cell[1])
-        if moving_direction == east:
-            cell = (cell[0], cell[1]+1)
-        if moving_direction == south:
-            cell = (cell[0]+1, cell[1])
-        if moving_direction == west:
-            cell = (cell[0], cell[1]-1)
-        return cell
-
+   
     def solve_maze(self):
         """Ratkaisee labyrintin, alkupisteenä vasen yläkulma ja loppupisteenä
            oikea alakulma, ja mittaa siihen kuluneen ajan.
@@ -128,19 +44,19 @@ class WallFollower:
         end = (self.maze_size-1,self.maze_size-1)
         while cell != (end):
             
-            if self.try_right(cell, moving_direction):
-                moving_direction = self.turn_where_is_right(moving_direction)
-                cell = self.move_forward(cell, moving_direction)
+            if self.explore.try_right(cell, moving_direction):
+                moving_direction = self.explore.turn_where_is_right(moving_direction)
+                cell = self.explore.move_forward(cell, moving_direction)
                 self.solution.append(cell)
                 continue
 
-            if self.no_wall_in_front(cell, moving_direction):    
-                cell = self.move_forward(cell, moving_direction)
+            if self.explore.no_wall_in_front(cell, moving_direction):    
+                cell = self.explore.move_forward(cell, moving_direction)
                 self.solution.append(cell)
                 continue
             
             else:
-                moving_direction = self.turn_where_is_left(moving_direction)
+                moving_direction = self.explore.turn_where_is_left(moving_direction)
                 continue
 
         end_time = time.time()
