@@ -2,7 +2,7 @@ from explore import Explore
 import math
 from maze import Maze
 import random
-from PIL import Image, ImageDraw
+
 north = 0
 east = 1
 south = 2
@@ -21,6 +21,8 @@ class Tremaux:
         self.elapsed_time = None
         self.visited = []
         self.visited_twice = []
+
+        self.solve_maze()
 
     def solve_maze(self):
         start = 0,0
@@ -56,9 +58,6 @@ class Tremaux:
                         cell = self.explore.move_forward(cell, moving_direction)
                         self.solution.append(cell)
                         continue
-
-        print(self.visited_twice, "visited twice")
-        print(self.solution)
 
     def not_visited_directions(self, cell, moving_direction):
         unvisited_directions = []
@@ -122,42 +121,3 @@ class Tremaux:
             once_visited_directions.append(left_cell)
 
         return once_visited_directions
-
-
-    def draw_solution(self):
-            """Piirtää ratkaistun reitin labyrintin kuvaan.
-            """
-            self.adjust_solution_size()
-            self.solve_maze()
-            with Image.open("src/data/maze.png") as im:
-
-                draw = ImageDraw.Draw(im)
-                last_point = (0,0)
-                for line in self.solution:
-                    draw.line(
-                            fill="RGB(44,55,255)",
-                            width=self.wall_thickness,
-                            xy=[(last_point[1]*self.total_cell_thickness+self.cell_center,
-                                last_point[0]*self.total_cell_thickness+self.cell_center),
-                                (line[1]*self.total_cell_thickness+self.cell_center,
-                                line[0]*self.total_cell_thickness+self.cell_center)
-                                ]
-                                )
-                    
-                    last_point = line
-                im.save("src/data/solution_tremaux.png")
-
-    def adjust_solution_size(self):
-            """Säätää piirrettävän ratkaisun kokoa labyrintin kokoa vastaavaksi.
-            """
-            if self.maze_size > 10:
-                self.cell_thickness = int((10/self.maze_size)*20)
-                self.wall_thickness = int((10/self.maze_size)*6)
-                if self.wall_thickness < 1:
-                    self.wall_thickness = 1
-                self.total_cell_thickness = round(self.cell_thickness+self.wall_thickness)
-                self.cell_center = round(self.total_cell_thickness/2)
-            else:
-                self.cell_thickness = 20
-                self.wall_thickness = 6
-

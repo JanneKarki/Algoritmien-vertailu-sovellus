@@ -1,6 +1,6 @@
-from PIL import Image
+from PIL import Image, ImageDraw
 import numpy as np
-import math
+
 class Visualization:
     """Luokka joka vastaa labyrintin piirtämisestä kuvaksi"""
 
@@ -9,6 +9,8 @@ class Visualization:
         """
         self.cell_thickness = 20
         self.wall_thickness = 6
+        self.total_cell_thickness = 26
+        self.cell_center = 13
 
     def draw_maze_image(self, maze, maze_size):
         """Piirtää tallentaa labyrintin kuvan
@@ -50,5 +52,41 @@ class Visualization:
             self.cell_thickness = 20
             self.wall_thickness = 6
 
+    def draw_solution(self, solution, algorithm, maze_size):
+            """Piirtää ratkaistun reitin labyrintin kuvaan.
+            """
+            self.adjust_solution_size(maze_size)
+            path = "src/data/solution_" + algorithm + ".png"
+            with Image.open("src/data/maze.png") as im:
+
+                draw = ImageDraw.Draw(im)
+                last_point = (0,0)
+                for line in solution:
+                    draw.line(
+                            fill="RGB(44,55,255)",
+                            width=self.wall_thickness,
+                            xy=[(last_point[1]*self.total_cell_thickness+self.cell_center,
+                                last_point[0]*self.total_cell_thickness+self.cell_center),
+                                (line[1]*self.total_cell_thickness+self.cell_center,
+                                line[0]*self.total_cell_thickness+self.cell_center)
+                                ]
+                                )
+                    
+                    last_point = line
+                im.save(path)
+
+    def adjust_solution_size(self, maze_size):
+            """Säätää piirrettävän ratkaisun kokoa labyrintin kokoa vastaavaksi.
+            """
+            if maze_size > 10:
+                self.cell_thickness = int((10/maze_size)*20)
+                self.wall_thickness = int((10/maze_size)*6)
+                if self.wall_thickness < 1:
+                    self.wall_thickness = 1
+                self.total_cell_thickness = round(self.cell_thickness+self.wall_thickness)
+                self.cell_center = round(self.total_cell_thickness/2)
+            else:
+                self.cell_thickness = 20
+                self.wall_thickness = 6
 
 visualization = Visualization()
