@@ -3,6 +3,7 @@
 ## Dokumentaatio
 - [Määrittelydokumentti](https://github.com/JanneKarki/Algoritmien-vertailu-sovellus/blob/master/dokumentaatio/maarittelydokumentti.md)
 - [Testausdokumentti](https://github.com/JanneKarki/Algoritmien-vertailu-sovellus/blob/master/dokumentaatio/testausdokumentti.md)
+- [Käyttöohje](https://github.com/JanneKarki/Algoritmien-vertailu-sovellus/blob/master/dokumentaatio/kayttoohje.md)
 ## Viikkoraportit
 
 - [Viikkoraportti 1](https://github.com/JanneKarki/Algoritmien-vertailu-sovellus/blob/master/dokumentaatio/Viikkoraportti_1.md)
