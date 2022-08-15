@@ -4,7 +4,7 @@
 
 Sovellus käyttää riippuvuuksien hallintaan poetrya, joten se tulee olla asennettuna koneelle.
 
-Ennen sovelluksen käynnistämistä, suorita komentoriviltä sovelluken juuri-hakemistossa seuraavat komennot:
+Ennen sovelluksen käynnistämistä, suorita komentoriviltä sovelluksen juurihakemistossa seuraavat komennot:
 
 1. Asenna sovelluksen tarvitsemat riippuvuudet komennolla:
 ```bash
