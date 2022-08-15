@@ -24,52 +24,69 @@ class Tremaux:
         start = 0,0
         cell = start
         moving_direction = east
-        visited = {}
+        visited = []
+        visited_twice = []
 
         while cell != ((self.maze_size-1,self.maze_size-1)):
-            available_directions = []
+            unvisited_directions = []
+            once_visited_directions = []
 
-           
-            if self.explore.try_right(cell, moving_direction) and cell not in visited:
-                available_directions.append(self.explore.turn_where_is_right(moving_direction))
-            if self.explore.no_wall_in_front(cell, moving_direction) and cell not in visited:
-                available_directions.append(moving_direction)
-            if self.explore.try_left(cell, moving_direction) and cell not in visited:
-                available_directions.append(self.explore.turn_where_is_left(moving_direction))
+            print(cell)
+            visited.append(cell)
+            left_cell = self.explore.turn_where_is_left(moving_direction)
+            right_cell = self.explore.turn_where_is_right(moving_direction)
+            front_cell = moving_direction
 
-            if available_directions:
-                moving_direction = random.choice(available_directions)
-                cell = self.explore.move_forward(cell, moving_direction)
+            # tarkistaa onko kulkemattomia suuntia
+            if self.explore.try_right(cell, moving_direction) and self.explore.move_forward(cell, right_cell) not in visited:
+                unvisited_directions.append(right_cell)
+            if self.explore.no_wall_in_front(cell, moving_direction) and self.explore.move_forward(cell, front_cell) not in visited:
+                unvisited_directions.append(moving_direction)
+            if self.explore.try_left(cell, moving_direction) and self.explore.move_forward(cell, left_cell) not in visited:
+                unvisited_directions.append(left_cell)
+
+            # jos kulkemattomia suuntia käänny random ja kulje askel eteenpäin
+            if unvisited_directions:
+                print(unvisited_directions, "unvisited directions")
                 
-            if not available_directions:
-                if self.explore.try_right(cell, moving_direction) and cell in visited:
-                    if visited[cell] == 1:
-                        available_directions.append(self.explore.turn_where_is_right(moving_direction))
-                if self.explore.no_wall_in_front(cell, moving_direction) and cell in visited:
-                    if visited[cell] == 1:
-                        available_directions.append(moving_direction)
-                if self.explore.try_left(cell,moving_direction) and cell in visited:
-                    available_directions.append(self.explore.turn_where_is_left(moving_direction))
+                moving_direction = random.choice(unvisited_directions)
+                print(moving_direction, " moving direction")  
+                cell = self.explore.move_forward(cell, moving_direction)
+                self.solution.append(cell)
+                continue
+            #jos ei ole kulkemattomia suuntia tarkista onko kerran kuljettuja suuntia
+            if not unvisited_directions:
+                print("not unvisited directions")
+                if self.explore.try_right(cell, moving_direction) and self.explore.move_forward(cell, right_cell) in visited and self.explore.move_forward(cell, right_cell) not in visited_twice:
+                    once_visited_directions.append(right_cell)
+                if self.explore.no_wall_in_front(cell, moving_direction) and self.explore.move_forward(cell, front_cell) in visited and self.explore.move_forward(cell, front_cell) not in visited_twice:
+                    once_visited_directions.append(moving_direction)
+                    print("eteenpäin pääsee takaisin ")
+                if self.explore.try_left(cell,moving_direction) and self.explore.move_forward(cell, left_cell) in visited and self.explore.move_forward(cell, left_cell) not in visited_twice:
+                    once_visited_directions.append(left_cell)
 
-                if not available_directions:
+                print(once_visited_directions)
+                if not once_visited_directions and not unvisited_directions:
+                    print("este edessä")
                     moving_direction = self.explore.turn_around(moving_direction)
+                    
                     continue
                 else:
-                    moving_direction = random.choice(available_directions)
-                    cell = self.explore.move_forward(cell, moving_direction)
+                    if len(once_visited_directions) == 1:
+                        print("vain yksi suunta jo kuljettu suunta")
+                        visited_twice.append(cell)
+                        moving_direction = once_visited_directions[0]
+                        cell = self.explore.move_forward(cell, moving_direction)
+                        self.solution.append(cell)
+                        continue
+                    else:
+                        moving_direction = random.choice(once_visited_directions)
+                        cell = self.explore.move_forward(cell, moving_direction)
+                        self.solution.append(cell)
+                        continue
 
-
-            #else:
-            print(available_directions)
-            
-            if cell not in visited:
-                visited[cell] = 1
-            else:
-                visited[cell] = 2
-
-            
-            self.solution.append(cell)
-            print(self.solution)
+        print(visited_twice, "visited twice")
+        print(self.solution)
 
     def draw_solution(self):
             """Piirtää ratkaistun reitin labyrintin kuvaan.
@@ -92,7 +109,7 @@ class Tremaux:
                                 )
                     
                     last_point = line
-                im.save("src/data/solution_treamux.png")
+                im.save("src/data/solution_tremaux.png")
 
     def adjust_solution_size(self):
             """Säätää piirrettävän ratkaisun kokoa labyrintin kokoa vastaavaksi.
