@@ -16,7 +16,6 @@ class TestMaze(unittest.TestCase):
 
     def test_maze_turned_to_air_directed_set(self):
         air_directed_maze = self.maze.air_directed_maze
-        print(air_directed_maze, "airdirectedmaze???????????????")
         empty_set = {}
         self.assertNotEqual(air_directed_maze, empty_set)
 
