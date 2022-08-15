@@ -31,7 +31,7 @@ class WallFollower:
         self.elapsed_time = None
         self.explore = Explore(self.maze)
         
-
+        self.solve_maze()
    
     def solve_maze(self):
         """Ratkaisee labyrintin, alkupisteenä vasen yläkulma ja loppupisteenä
@@ -64,42 +64,7 @@ class WallFollower:
         self.solution.append(last_step)
         self.count_time(start_time, end_time)
 
-    def draw_solution(self):
-        """Piirtää ratkaistun reitin labyrintin kuvaan.
-        """
-        self.adjust_solution_size()
-        self.solve_maze()
-        with Image.open("src/data/maze.png") as im:
-
-            draw = ImageDraw.Draw(im)
-            last_point = (0,0)
-            for line in self.solution:
-                draw.line(
-                          fill="RGB(44,55,255)",
-                          width=self.wall_thickness,
-                          xy=[(last_point[1]*self.total_cell_thickness+self.cell_center,
-                             last_point[0]*self.total_cell_thickness+self.cell_center),
-                             (line[1]*self.total_cell_thickness+self.cell_center,
-                             line[0]*self.total_cell_thickness+self.cell_center)
-                             ]
-                            )
-                
-                last_point = line
-            im.save("src/data/solution.png")
-
-    def adjust_solution_size(self):
-        """Säätää piirrettävän ratkaisun kokoa labyrintin kokoa vastaavaksi.
-        """
-        if self.maze_size > 10:
-            self.cell_thickness = int((10/self.maze_size)*20)
-            self.wall_thickness = int((10/self.maze_size)*6)
-            if self.wall_thickness < 1:
-                self.wall_thickness = 1
-            self.total_cell_thickness = round(self.cell_thickness+self.wall_thickness)
-            self.cell_center = round(self.total_cell_thickness/2)
-        else:
-            self.cell_thickness = 20
-            self.wall_thickness = 6
+    
 
     def count_time(self, start_time, end_time):
         """Laskee labyrintin ratkaisuun kuluneen ajan.
