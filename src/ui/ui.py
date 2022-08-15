@@ -1,6 +1,7 @@
 from visualization import visualization
 from maze import Maze
 from wall_follower import WallFollower
+from tremaux import Tremaux
 import tkinter as tk
 from tkinter import ttk, StringVar
 from PIL import Image
@@ -14,7 +15,6 @@ class UI:
         Args:
             root (tkinter.TK): Graafisen käyttöliittymän moduuli.
         """
-      
         self._root = root
         self._frame = ttk.Frame(master=self._root)
         self.class_maze = None
@@ -70,6 +70,10 @@ class UI:
             master=self._frame,
             text="Wall Follower",
             command=self.handle_wall_follower)
+        tremaux_button = ttk.Button(
+            master=self._frame,
+            text="Tremaux",
+            command=self.handle_tremaux)
 
         self.maze_label.grid(row=1, column=0, ipady=5, padx=5, pady=5)
         generate_maze_button.grid(row=4, column=0, padx=5, pady=10)
@@ -84,8 +88,7 @@ class UI:
         self.size_entry.grid(row=3, column=0)
         self.wall_follower_time_label.grid(row=8, column=0)
         self.wall_follower_steps_label.grid(row=9, column=0)
-        
-
+        tremaux_button.grid(row=10, column=0)
 
 
     def handle_wall_follower(self):
@@ -93,20 +96,30 @@ class UI:
            sen labyrintin kuvaan, sekä asettaa sen näykyville. 
         """
         wall_follower = WallFollower(self.air_directed_maze)
-        wall_follower.draw_solution()
+        visualization.draw_solution(wall_follower.solution, "wall_follower", wall_follower.maze_size)
         
         self.wall_follower_time.set(str(wall_follower.elapsed_time) + " sekuntia")
         self.wall_follower_steps.set(str(len(wall_follower.solution))+ " askelta")
         self.wall_follower_time_label.grid()
         self.wall_follower_steps_label.grid()
-        self.show_solution()
+        photo = tk.PhotoImage(file="src/data/solution_wall_follower.png")
+        self.show_solution(photo)
+
+    def handle_tremaux(self):
+        """Ratkaisee labyrintin "Tremaux"-algoritmilla, piirtää
+           sen labyrintin kuvaan ja asettaa sen näykyville. 
+        """
+        tremaux = Tremaux(self.air_directed_maze)
+        visualization.draw_solution(tremaux.solution, "tremaux", tremaux.maze_size)
+        photo = tk.PhotoImage(file="src/data/solution_tremaux.png")
+        self.show_solution(photo)
         
 
 
-    def show_solution(self):
+    def show_solution(self, photo):
         """Lataa piirretyn ratkaisun kuvan ja asettaa sen näkyviin.
         """
-        photo = tk.PhotoImage(file="src/data/solution.png")
+        
         self.maze_label.configure(image=photo)
         self._root.mainloop()
         
