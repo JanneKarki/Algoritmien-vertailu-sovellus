@@ -1,6 +1,7 @@
 import random
 import time
 
+
 class Maze:
     "Luokka, joka luo syklittömän, neliön labyrintin Kruskallin algoritmilla"
 
@@ -24,13 +25,13 @@ class Maze:
         """Kruskalin algortmi, joka luo syklittömän labyrintin.
         """
         start_time = time.time()
-        for x in range (0, self.maze_size):
-            for y in range (0, self.maze_size):
-                node = (x,y)
+        for x in range(0, self.maze_size):
+            for y in range(0, self.maze_size):
+                node = (x, y)
                 self.graph[node] = []
 
         for node in self.graph.keys():
-            x,y = node
+            x, y = node
             neighbours = []
 
             if x > 0:
@@ -40,9 +41,8 @@ class Maze:
             if y > 0:
                 neighbours.append((x, y - 1))
             if y < self.maze_size - 1:
-                neighbours.append((x, y + 1))     
+                neighbours.append((x, y + 1))
             self.graph[node] = neighbours
-
 
         for element in self.graph.keys():
             self.disjoint_set[element] = element
@@ -50,7 +50,7 @@ class Maze:
         for node in self.graph.keys():
             neighbours = self.graph[node]
             for neighbour in neighbours:
-                if(node, neighbour) not in self.graph_edges and (neighbour, node) not in self.graph_edges:
+                if (node, neighbour) not in self.graph_edges and (neighbour, node) not in self.graph_edges:
                     self.graph_edges.append((node, neighbour))
 
         while (len(self.solution) < (len(self.graph.keys()) - 1)):
@@ -58,16 +58,16 @@ class Maze:
             node1, node2 = rnd_edge
             set1 = self._find(node1)
             set2 = self._find(node2)
-                    
+
             if (set1 != set2):
                 self._union(node1, node2)
                 self.solution.append(rnd_edge)
 
                 self.graph_edges.remove(rnd_edge)
-        
+
         end_time = time.time()
         self.count_time(start_time, end_time)
-        
+
         self.maze_in_air_directions(self.solution)
 
     def _find(self, element):
@@ -97,42 +97,44 @@ class Maze:
         "N,E,S,W"
         for x in range(self.maze_size):
             for y in range(self.maze_size):
-                self.air_directed_maze[(x,y)] = (0,0,0,0)
+                self.air_directed_maze[(x, y)] = (0, 0, 0, 0)
 
         for edge in maze:
             x = (edge[1][0]-edge[0][0])
 
-            if x == 1: #solusta pääsee alas
+            if x == 1:  # solusta pääsee alas
                 north = self.air_directed_maze[edge[0]][0]
                 east = self.air_directed_maze[edge[0]][1]
                 south = 1
                 west = self.air_directed_maze[edge[0]][3]
-                self.air_directed_maze[edge[0]] = (north,east,south,west) #solusta pääsee alas
-                #solusta pääsee ylös
+                self.air_directed_maze[edge[0]] = (
+                    north, east, south, west)  # solusta pääsee alas
+                # solusta pääsee ylös
                 north = 1
                 east = self.air_directed_maze[edge[1]][1]
                 south = self.air_directed_maze[edge[1]][2]
                 west = self.air_directed_maze[edge[1]][3]
-                #solusta pääsee ylös
-                self.air_directed_maze[edge[1]] = (north,east,south,west)
+                # solusta pääsee ylös
+                self.air_directed_maze[edge[1]] = (north, east, south, west)
 
             y = (edge[1][1]-edge[0][1])
-            if y == 1: #solusta pääsee oikealle
+            if y == 1:  # solusta pääsee oikealle
                 north = self.air_directed_maze[edge[0]][0]
                 east = 1
                 south = self.air_directed_maze[edge[0]][2]
                 west = self.air_directed_maze[edge[0]][3]
 
-                self.air_directed_maze[edge[0]] = (north,east,south,west) #solusta pääsee oikealle
+                self.air_directed_maze[edge[0]] = (
+                    north, east, south, west)  # solusta pääsee oikealle
 
                 north = self.air_directed_maze[edge[1]][0]
                 east = self.air_directed_maze[edge[1]][1]
                 south = self.air_directed_maze[edge[1]][2]
-                #solusta pääsee vasemmalle
+                # solusta pääsee vasemmalle
                 west = 1
-                self.air_directed_maze[edge[1]] = (north,east,south,west)
+                self.air_directed_maze[edge[1]] = (north, east, south, west)
 
-        return self.air_directed_maze    
+        return self.air_directed_maze
 
     def count_time(self, start_time, end_time):
         """Laskee labyrintin muodostamiseen kuluneen ajan.

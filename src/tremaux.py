@@ -9,11 +9,13 @@ east = 1
 south = 2
 west = 3
 
+
 class Tremaux:
     """Luokka joka vastaa labyrintin ratkaisusta Tremaux-algoritmilla,
         joka merkitsemällä kulkemansa reitin löytää reitin ulos. Kaksi kertaa
         merkattulle reitille ei enään mennä.
     """
+
     def __init__(self, maze):
         """Luokan konstruktori, joka luo Treamaux-algoritmista vastaavan
            palvelun.
@@ -39,38 +41,44 @@ class Tremaux:
            oikea alakulma.
         """
 
-        start = 0,0
+        start = 0, 0
         cell = start
         moving_direction = east
         start_time = time.time()
 
-        while cell != ((self.maze_size-1,self.maze_size-1)):
+        while cell != ((self.maze_size-1, self.maze_size-1)):
 
-            self.visited.append(cell)       
-            unvisited_directions = self.not_visited_directions(cell, moving_direction)
+            self.visited.append(cell)
+            unvisited_directions = self.not_visited_directions(
+                cell, moving_direction)
 
             if unvisited_directions:
-                moving_direction = random.choice(unvisited_directions)  
+                moving_direction = random.choice(unvisited_directions)
                 cell = self.explore.move_forward(cell, moving_direction)
                 self.solution.append(cell)
                 continue
 
             if not unvisited_directions:
-                once_visited_directions = self.visited_directions(cell, moving_direction)
-               
+                once_visited_directions = self.visited_directions(
+                    cell, moving_direction)
+
                 if not once_visited_directions:
-                    moving_direction = self.explore.turn_around(moving_direction)
+                    moving_direction = self.explore.turn_around(
+                        moving_direction)
                     continue
                 else:
                     if len(once_visited_directions) == 1:
                         self.visited_twice.append(cell)
                         moving_direction = once_visited_directions[0]
-                        cell = self.explore.move_forward(cell, moving_direction)
+                        cell = self.explore.move_forward(
+                            cell, moving_direction)
                         self.solution.append(cell)
                         continue
                     else:
-                        moving_direction = random.choice(once_visited_directions)
-                        cell = self.explore.move_forward(cell, moving_direction)
+                        moving_direction = random.choice(
+                            once_visited_directions)
+                        cell = self.explore.move_forward(
+                            cell, moving_direction)
                         self.solution.append(cell)
                         continue
         end_time = time.time()
@@ -95,26 +103,26 @@ class Tremaux:
         if (
             self.explore.try_right(cell, moving_direction) and
             self.explore.move_forward(cell, right_cell) not in self.visited
-            ):
+        ):
 
             unvisited_directions.append(right_cell)
 
         if (
             self.explore.no_wall_in_front(cell, moving_direction) and
             self.explore.move_forward(cell, front_cell) not in self.visited
-            ):
+        ):
 
             unvisited_directions.append(moving_direction)
 
         if (
             self.explore.try_left(cell, moving_direction) and
             self.explore.move_forward(cell, left_cell) not in self.visited
-            ):
+        ):
 
             unvisited_directions.append(left_cell)
 
         return unvisited_directions
-        
+
     def visited_directions(self, cell, moving_direction):
         """Tarkistaa onko solusta reittejä, joilla algoritmi on  vieraillut jo kerran.
 
@@ -134,24 +142,27 @@ class Tremaux:
         if (
             self.explore.try_right(cell, moving_direction) and
             self.explore.move_forward(cell, right_cell) in self.visited and
-            self.explore.move_forward(cell, right_cell) not in self.visited_twice
-            ):
+            self.explore.move_forward(
+                cell, right_cell) not in self.visited_twice
+        ):
 
             once_visited_directions.append(right_cell)
-            
+
         if (
             self.explore.no_wall_in_front(cell, moving_direction) and
             self.explore.move_forward(cell, front_cell) in self.visited and
-            self.explore.move_forward(cell, front_cell) not in self.visited_twice
-            ):
+            self.explore.move_forward(
+                cell, front_cell) not in self.visited_twice
+        ):
 
             once_visited_directions.append(moving_direction)
 
         if (
-            self.explore.try_left(cell,moving_direction) and
+            self.explore.try_left(cell, moving_direction) and
             self.explore.move_forward(cell, left_cell) in self.visited and
-            self.explore.move_forward(cell, left_cell) not in self.visited_twice
-            ):
+            self.explore.move_forward(
+                cell, left_cell) not in self.visited_twice
+        ):
 
             once_visited_directions.append(left_cell)
 

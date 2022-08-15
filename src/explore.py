@@ -3,9 +3,11 @@ east = 1
 south = 2
 west = 3
 
+
 class Explore:
     """Luokka, joka vastaa labyrintissä liikkumisesta.
     """
+
     def __init__(self, maze):
         """Luokan konstruktori, joka luo labyrintin liikkumisesta vastaavan palvelun.
 
@@ -15,7 +17,6 @@ class Explore:
                             1=pääsy.
         """
         self.maze = maze
-
 
     def no_wall_in_front(self, cell, moving_direction):
         """Tarkistaa, ettei edessä ole seinää.
@@ -29,10 +30,10 @@ class Explore:
                 muuten False.
         """
         air_directions = self.maze[cell]
-        if air_directions[moving_direction] == 1:  
+        if air_directions[moving_direction] == 1:
             return True
-        return False    
-    
+        return False
+
     def try_right(self, cell, moving_direction):
         """Tarkistaa, ettei oikealla ole seinää.
 
@@ -46,7 +47,7 @@ class Explore:
         """
         air_directions = self.maze[cell]
         right = self.turn_where_is_right(moving_direction)
-        if air_directions[right] == 1:  
+        if air_directions[right] == 1:
             return True
         return False
 
@@ -81,7 +82,7 @@ class Explore:
         """
         air_directions = self.maze[cell]
         right = self.turn_where_is_left(moving_direction)
-        if air_directions[right] == 1:  
+        if air_directions[right] == 1:
             return True
         return False
 
@@ -95,7 +96,7 @@ class Explore:
             int: Oikealle kääntynyt etenemissuunta.
         """
         if moving_direction == north:
-            return east 
+            return east
         if moving_direction == east:
             return south
         if moving_direction == south:
@@ -113,7 +114,7 @@ class Explore:
             int: Vasemmalle kääntynyt etenemissuunta.
         """
         if moving_direction == north:
-            return west 
+            return west
         if moving_direction == east:
             return north
         if moving_direction == south:

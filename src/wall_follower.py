@@ -8,12 +8,14 @@ east = 1
 south = 2
 west = 3
 
+
 class WallFollower:
     """Luokka joka vastaa labyrintin ratkaisusta Wall-Follower algoritmilla,
     joka oikean puoleista seinää seuraamalla, löytää ratkaisun.
     """
+
     def __init__(self, maze):
-        """Luokan konstruktorin joka luo Wall-Follower-Algoritmista vastaavan
+        """Luokan konstruktori, joka luo Wall-Follower-Algoritmista vastaavan
            palvelun.
 
         Args:
@@ -30,41 +32,41 @@ class WallFollower:
         self.cell_center = 13
         self.elapsed_time = None
         self.explore = Explore(self.maze)
-        
+
         self.solve_maze()
-   
+
     def solve_maze(self):
         """Ratkaisee labyrintin, alkupisteenä vasen yläkulma ja loppupisteenä
            oikea alakulma, ja mittaa siihen kuluneen ajan.
         """
-        start = 0,0
+        start = 0, 0
         cell = start
         moving_direction = east
         start_time = time.time()
-        end = (self.maze_size-1,self.maze_size-1)
+        end = (self.maze_size-1, self.maze_size-1)
         while cell != (end):
-            
+
             if self.explore.try_right(cell, moving_direction):
-                moving_direction = self.explore.turn_where_is_right(moving_direction)
+                moving_direction = self.explore.turn_where_is_right(
+                    moving_direction)
                 cell = self.explore.move_forward(cell, moving_direction)
                 self.solution.append(cell)
                 continue
 
-            if self.explore.no_wall_in_front(cell, moving_direction):    
+            if self.explore.no_wall_in_front(cell, moving_direction):
                 cell = self.explore.move_forward(cell, moving_direction)
                 self.solution.append(cell)
                 continue
-            
+
             else:
-                moving_direction = self.explore.turn_where_is_left(moving_direction)
+                moving_direction = self.explore.turn_where_is_left(
+                    moving_direction)
                 continue
 
         end_time = time.time()
-        last_step = (self.maze_size-1,self.maze_size-1)
+        last_step = (self.maze_size-1, self.maze_size-1)
         self.solution.append(last_step)
         self.count_time(start_time, end_time)
-
-    
 
     def count_time(self, start_time, end_time):
         """Laskee labyrintin ratkaisuun kuluneen ajan.
