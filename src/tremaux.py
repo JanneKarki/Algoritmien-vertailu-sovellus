@@ -9,7 +9,19 @@ south = 2
 west = 3
 
 class Tremaux:
+    """Luokka joka vastaa labyrintin ratkaisusta Tremaux-algoritmilla,
+        joka merkitsemällä kulkemansa reitin löytää reitin ulos. Kaksi kertaa
+        merkattulle reitille ei enään mennä.
+    """
     def __init__(self, maze):
+        """Luokan konstruktori, joka luo Treamaux-algoritmista vastaavan
+           palvelun.
+
+        Args:
+            maze (dict): Labyrintti sanakirjassa, avaimena solut jotka sisältävät
+                        tuplen (0,0,0,0) (north,east,south,west) nolla=seinä,
+                        1=pääsy.
+        """
         self.maze = maze
         self.solution = []
         self.maze_size = math.sqrt(len(self.maze))
@@ -21,6 +33,10 @@ class Tremaux:
         self.solve_maze()
 
     def solve_maze(self):
+        """Ratkaisee labyrintin, alkupisteenä vasen yläkulma ja loppupisteenä
+           oikea alakulma.
+        """
+
         start = 0,0
         cell = start
         moving_direction = east
@@ -56,6 +72,15 @@ class Tremaux:
                         continue
 
     def not_visited_directions(self, cell, moving_direction):
+        """Tarkistaa onko solusta reittejä, joilla algoritmi ei ole vielä vieraillut.
+
+        Args:
+            cell (tuple): Solu jossa algoritmi on.
+            moving_direction (int): Etenemissuunta.
+
+        Returns:
+            list: Palauttaa suunnat, joissa algorimti ei ole vielä käynyt.
+        """
         unvisited_directions = []
 
         left_cell = self.explore.turn_where_is_left(moving_direction)
@@ -86,6 +111,15 @@ class Tremaux:
         return unvisited_directions
         
     def visited_directions(self, cell, moving_direction):
+        """Tarkistaa onko solusta reittejä, joilla algoritmi on  vieraillut jo kerran.
+
+        Args:
+            cell (tuple): Solu jossa algoritmi on.
+            moving_direction (int): Etenemissuunta.
+
+        Returns:
+            list: Palauttaa suunnat, joissa algorimti on käynyt kerran.
+        """
         once_visited_directions = []
 
         left_cell = self.explore.turn_where_is_left(moving_direction)
