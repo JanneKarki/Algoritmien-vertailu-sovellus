@@ -2,11 +2,11 @@ import unittest
 from maze import Maze
 from explore import Explore
 
+
 class TestExplore(unittest.TestCase):
     def setUp(self):
         self.maze = Maze(5)
         self.explore = Explore(self.maze)
-
 
     def test_turn_right_returns_correct_air_direction(self):
         """
@@ -29,7 +29,7 @@ class TestExplore(unittest.TestCase):
         self.assertEqual(True, right_moving_east)
         self.assertEqual(True, right_moving_south)
         self.assertEqual(True, right_moving_west)
-        
+
     def test_turn_left_returns_correct_air_direction(self):
         """
         north -> west

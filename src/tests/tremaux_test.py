@@ -2,6 +2,7 @@ import unittest
 from maze import Maze
 from tremaux import Tremaux
 
+
 class TestTremaux(unittest.TestCase):
     def setUp(self):
         self.maze = Maze(5)
@@ -16,7 +17,6 @@ class TestTremaux(unittest.TestCase):
                         (2, 1): (1, 0, 0, 0),
                         (2, 2): (1, 0, 0, 0)}
 
-    
     def test_maze_size_is_correct(self):
         maze_size = self.tremaux.maze_size
         self.assertEqual(maze_size, 5)

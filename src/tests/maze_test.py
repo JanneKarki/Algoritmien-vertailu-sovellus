@@ -1,6 +1,7 @@
 import unittest
 from maze import Maze
 
+
 class TestMaze(unittest.TestCase):
     def setUp(self):
         self.maze = Maze(5)
@@ -25,7 +26,6 @@ class TestMaze(unittest.TestCase):
 
     def test_air_directed_maze_set_has_starting_point(self):
         maze = self.maze.air_directed_maze
-        start = (0,0)
+        start = (0, 0)
         find = start in maze
         self.assertEqual(True, find)
-
