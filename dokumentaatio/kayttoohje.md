@@ -18,3 +18,5 @@ poetry install
 ```bash
 poetry run invoke start
 ```
+
+## Sovelluksen käyttäminen
