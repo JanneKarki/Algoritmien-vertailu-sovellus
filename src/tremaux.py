@@ -2,6 +2,7 @@ from explore import Explore
 import math
 from maze import Maze
 import random
+import time
 
 north = 0
 east = 1
@@ -29,6 +30,7 @@ class Tremaux:
         self.elapsed_time = None
         self.visited = []
         self.visited_twice = []
+        self.elapsed_time = None
 
         self.solve_maze()
 
@@ -40,6 +42,7 @@ class Tremaux:
         start = 0,0
         cell = start
         moving_direction = east
+        start_time = time.time()
 
         while cell != ((self.maze_size-1,self.maze_size-1)):
 
@@ -70,6 +73,8 @@ class Tremaux:
                         cell = self.explore.move_forward(cell, moving_direction)
                         self.solution.append(cell)
                         continue
+        end_time = time.time()
+        self.count_time(start_time, end_time)
 
     def not_visited_directions(self, cell, moving_direction):
         """Tarkistaa onko solusta reittejä, joilla algoritmi ei ole vielä vieraillut.
@@ -151,3 +156,13 @@ class Tremaux:
             once_visited_directions.append(left_cell)
 
         return once_visited_directions
+
+    def count_time(self, start_time, end_time):
+        """Laskee labyrintin ratkaisuun kuluneen ajan.
+
+        Args:
+            start_time (float): Ratkaisun aloitusaika.
+            end_time (float): Ratkaisun valmistumisaika.
+        """
+        elapsed_time = "{0:.5f}".format(end_time-start_time)
+        self.elapsed_time = elapsed_time

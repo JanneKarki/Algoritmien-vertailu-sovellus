@@ -22,12 +22,19 @@ class UI:
         self.air_directed_maze = None  
         self.maze_label = ttk.Label(master=self._frame, image=None)
         self.size_entry = None
+
         self.wall_follower_time = None
         self.wall_follower_time_label = None
         self.wall_follower_steps = None
         self.wall_follower_steps_label = None
+
         self.maze_time = None
         self.maze_time_label = None
+
+        self.tremaux_time = None
+        self.tremaux_time_label = None
+        self.tremaux_steps = None
+        self.tremaux_steps_label = None
 
 
     def start(self):
@@ -42,7 +49,7 @@ class UI:
         self._frame.grid_columnconfigure(0, weight=1, minsize=150)
         
 
-        #wall_followe_time label
+        #wall_follower_time label
         self.wall_follower_time = StringVar(self._frame)
         self.wall_follower_time_label = ttk.Label(
             master=self._frame,
@@ -54,11 +61,24 @@ class UI:
             master=self._frame,
             textvariable=self.wall_follower_steps,
             foreground="red")
-
+        #maze_time
         self.maze_time = StringVar(self._frame)
         self.maze_time_label = ttk.Label(
             master=self._frame,
             textvariable=self.maze_time,
+            foreground="red")
+
+        #tremaux_time
+        self.tremaux_time = StringVar(self._frame)
+        self.tremaux_time_label = ttk.Label(
+            master=self._frame,
+            textvariable=self.tremaux_time,
+            foreground="red")
+        #tremaux_steps
+        self.tremaux_steps = StringVar(self._frame)
+        self.tremaux_steps_label = ttk.Label(
+            master=self._frame,
+            textvariable=self.tremaux_steps,
             foreground="red")
         
         generate_maze_button = ttk.Button(
@@ -89,6 +109,8 @@ class UI:
         self.wall_follower_time_label.grid(row=8, column=0)
         self.wall_follower_steps_label.grid(row=9, column=0)
         tremaux_button.grid(row=10, column=0)
+        self.tremaux_time_label.grid(row=11, column=0)
+        self.tremaux_steps_label.grid(row=12, column=0)
 
 
     def handle_wall_follower(self):
@@ -111,6 +133,10 @@ class UI:
         """
         tremaux = Tremaux(self.air_directed_maze)
         visualization.draw_solution(tremaux.solution, "tremaux", tremaux.maze_size)
+        self.tremaux_time.set(str(tremaux.elapsed_time) + " sekuntia")
+        self.tremaux_steps.set(str(len(tremaux.solution))+ " askelta")
+        self.tremaux_time_label.grid()
+        self.tremaux_steps_label.grid()
         photo = tk.PhotoImage(file="src/data/solution_tremaux.png")
         self.show_solution(photo)
         
