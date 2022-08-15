@@ -1,4 +1,6 @@
 # Käyttöohje
+Lataa viimeisimmän [releasen](https://github.com/JanneKarki/Algoritmien-vertailu-sovellus/releases/tag/Viikko_5) lähdekoodi valitsemalla Assets-osion alta Source code.
+
 
 ## Ohjelman käynnistäminen
 
