@@ -14,10 +14,6 @@ class Tremaux:
         self.solution = []
         self.maze_size = math.sqrt(len(self.maze))
         self.explore = Explore(self.maze)
-        self.wall_thickness = 6
-        self.cell_thickness = 20
-        self.total_cell_thickness = 26
-        self.cell_center = 13
         self.elapsed_time = None
         self.visited = []
         self.visited_twice = []
