@@ -1,4 +1,4 @@
-from services.functions.explore import Explore
+from functionalities.explore import Explore
 import math
 import random
 import time

@@ -1,4 +1,4 @@
-from services.functions.explore import Explore
+from functionalities.explore import Explore
 from PIL import Image, ImageDraw
 import math
 import time
