@@ -1,4 +1,6 @@
+from re import I
 from functionalities.explore import Explore
+from functionalities.visualization import Visualization
 from PIL import Image, ImageDraw
 import math
 import time
@@ -24,6 +26,8 @@ class WallFollower:
                         1=pääsy.
         """
         self.maze = maze
+        self.explore = Explore(self.maze)
+        self.visualization = Visualization()
         self.solution = []
         self.maze_size = math.sqrt(len(self.maze))
         self.wall_thickness = 6
@@ -31,7 +35,7 @@ class WallFollower:
         self.total_cell_thickness = 26
         self.cell_center = 13
         self.elapsed_time = None
-        self.explore = Explore(self.maze)
+        
 
         self.solve_maze()
 
@@ -67,6 +71,7 @@ class WallFollower:
         last_step = (self.maze_size-1, self.maze_size-1)
         self.solution.append(last_step)
         self.count_time(start_time, end_time)
+        self.visualization.draw_solution(self.solution, "wall_follower", self.maze_size)
 
     def count_time(self, start_time, end_time):
         """Laskee labyrintin ratkaisuun kuluneen ajan.

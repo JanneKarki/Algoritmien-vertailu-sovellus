@@ -1,7 +1,7 @@
-from services.visualization.visualization import visualization
-from services.algorithms.maze import Maze
-from services.algorithms.wall_follower import WallFollower
-from services.algorithms.tremaux import Tremaux
+from functionalities.visualization import visualization
+from algorithms.maze import Maze
+from algorithms.wall_follower import WallFollower
+from algorithms.tremaux import Tremaux
 import tkinter as tk
 from tkinter import ttk, StringVar
 from PIL import Image
@@ -114,9 +114,6 @@ class UI:
            sen labyrintin kuvaan, sekä asettaa sen näykyville. 
         """
         wall_follower = WallFollower(self.air_directed_maze)
-        visualization.draw_solution(
-            wall_follower.solution, "wall_follower", wall_follower.maze_size)
-
         self.wall_follower_time.set(
             str(wall_follower.elapsed_time) + " sekuntia")
         self.wall_follower_steps.set(
@@ -131,8 +128,6 @@ class UI:
            sen labyrintin kuvaan ja asettaa sen näykyville. 
         """
         tremaux = Tremaux(self.air_directed_maze)
-        visualization.draw_solution(
-            tremaux.solution, "tremaux", tremaux.maze_size)
         self.tremaux_time.set(str(tremaux.elapsed_time) + " sekuntia")
         self.tremaux_steps.set(str(len(tremaux.solution)) + " askelta")
         self.tremaux_time_label.grid()

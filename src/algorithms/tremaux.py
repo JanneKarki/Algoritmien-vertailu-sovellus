@@ -1,4 +1,5 @@
 from functionalities.explore import Explore
+from functionalities.visualization import Visualization
 import math
 import random
 import time
@@ -25,13 +26,15 @@ class Tremaux:
                         1=pääsy.
         """
         self.maze = maze
+        self.visualization = Visualization()
+        self.explore = Explore(self.maze)
         self.solution = []
         self.maze_size = math.sqrt(len(self.maze))
-        self.explore = Explore(self.maze)
         self.elapsed_time = None
         self.visited = []
         self.visited_twice = []
         self.elapsed_time = None
+        
 
         self.solve_maze()
 
@@ -82,6 +85,8 @@ class Tremaux:
                         continue
         end_time = time.time()
         self.count_time(start_time, end_time)
+        self.visualization.draw_solution(self.solution, "tremaux", self.maze_size)
+
 
     def not_visited_directions(self, cell, moving_direction):
         """Tarkistaa onko solusta reittejä, joilla algoritmi ei ole vielä vieraillut.
