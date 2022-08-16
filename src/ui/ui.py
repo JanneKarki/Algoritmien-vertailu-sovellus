@@ -1,7 +1,7 @@
-from visualization import visualization
-from maze import Maze
-from wall_follower import WallFollower
-from tremaux import Tremaux
+from services.visualization.visualization import visualization
+from services.algorithms.maze import Maze
+from services.algorithms.wall_follower import WallFollower
+from services.algorithms.tremaux import Tremaux
 import tkinter as tk
 from tkinter import ttk, StringVar
 from PIL import Image
