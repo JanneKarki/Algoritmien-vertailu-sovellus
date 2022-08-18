@@ -33,7 +33,7 @@ Labyrintin luonti tapahtuu syöttämällä kenttään labyrintin koko ja painama
 ![](./pictures/manual_pictures/luo_labyrintti2.png)
 
 
-Labyrintin luomisen jälkeen, sen kuva ilmestyy näkymään ja painikkeen alle algoritmilta siihen kulunut aika.
+Labyrintin luomisen jälkeen, sen kuva ilmestyy näkymään ja painikkeen alle algoritmilta sen muodostamiseen kulunut aika.
 
 
 ### Wall Follwer-ratkaisu
