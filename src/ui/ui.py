@@ -163,3 +163,5 @@ class UI:
         """
         self.wall_follower_steps_label.grid_remove()
         self.wall_follower_time_label.grid_remove()
+        self.tremaux_time_label.grid_remove()
+        self.tremaux_steps_label.grid_remove()
