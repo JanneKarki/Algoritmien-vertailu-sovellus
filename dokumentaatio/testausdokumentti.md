@@ -13,7 +13,7 @@
 
 ## Labyrintin ratkaisualgoritmien testit
 
-![](./pictures/test_pictures/tulostaulukko.png)
+![](./pictures/test_pictures/result_chart.png)
 
 
 ![](./pictures/test_pictures/wall_follower_chart.png)
@@ -21,4 +21,4 @@
 
 ![](./pictures/test_pictures/tremaux_chart.png)
 
-![](./pictures/test_pictures/vs_chart.png)
+![](./pictures/test_pictures/versus_chart.png)
