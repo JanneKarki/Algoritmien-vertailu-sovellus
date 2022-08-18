@@ -10,3 +10,15 @@
 ### Kruskalin algoritmi
 
 ![](./pictures/kruskal_aika.png)
+
+## Labyrintin ratkaisualgoritmien testit
+
+![](./pictures/test_pictures/tulostaulukko.png)
+
+
+![](./pictures/test_pictures/wall_follower_chart.png)
+
+
+![](./pictures/test_pictures/tremaux_chart.png)
+
+![](./pictures/test_pictures/vs_chart.png)
