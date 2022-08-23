@@ -1,6 +1,6 @@
 import unittest
-from maze import Maze
-from tremaux import Tremaux
+from algorithms.maze import Maze
+from algorithms.tremaux import Tremaux
 
 
 class TestTremaux(unittest.TestCase):

@@ -1,6 +1,6 @@
 import unittest
-from maze import Maze
-from wall_follower import WallFollower
+from algorithms.maze import Maze
+from algorithms.wall_follower import WallFollower
 
 
 class TestWallFollower(unittest.TestCase):

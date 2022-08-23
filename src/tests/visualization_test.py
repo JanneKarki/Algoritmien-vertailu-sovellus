@@ -1,7 +1,7 @@
 import unittest
-from maze import Maze
-from visualization import Visualization
-from wall_follower import WallFollower
+from algorithms.maze import Maze
+from functionalities.visualization import Visualization
+from algorithms.wall_follower import WallFollower
 
 
 class TestVisualization(unittest.TestCase):
