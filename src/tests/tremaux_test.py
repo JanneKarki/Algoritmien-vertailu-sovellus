@@ -21,8 +21,3 @@ class TestTremaux(unittest.TestCase):
         maze_size = self.tremaux.maze_size
         self.assertEqual(maze_size, 5)
 
-    def test_cells_visited_twice_is_correct(self):
-        tremaux = Tremaux(self.my_maze)
-        visited_twice = tremaux.visited_twice
-        listed_cells = []
-        self.assertEqual(visited_twice, listed_cells)
