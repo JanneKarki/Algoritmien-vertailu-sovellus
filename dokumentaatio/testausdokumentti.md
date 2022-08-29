@@ -1,8 +1,7 @@
 # Testausdokumentti
 
-## Testien kattavuus
 
-![](./pictures/test_pictures/coverage_3.png)
+## Yksikkötestit
 
 [Visualization-luokan](https://github.com/JanneKarki/Algoritmien-vertailu-sovellus/blob/master/src/tests/visualization_test.py) yksikkötestit, testaavat luokan moinpuolisesti. Sen että kuva muodostuu ja että sen solun ja seinien paksuudet mukautuvat labyrintin koon mukaan. Myös piirrettävän ratkaisun täytyy muuttua samassa suhteessa. Nämä tulevat testatuksi.
 
@@ -14,15 +13,20 @@
 
 [Maze-luokan](https://github.com/JanneKarki/Algoritmien-vertailu-sovellus/blob/master/src/tests/maze_test.py) yksikkötestit
 
+### Testien kattavuus
 
-Käyttöliittymä-luokka on jätetty testien ulkopuolelle.
+![](./pictures/test_pictures/coverage_4.png)
+
+UI-käyttöliittymäluokka on jätetty testien ulkopuolelle.
+
+
 
 
 # Suorituskykytestit
 
 ### Kruskalin algoritmi
 
-Suorituskyky testeissä testattiin Kruskal-algorimtin suoriutumista labyrintin luomisessa eri kokoisilla syötteillä. 
+Labyrintin luomisessa käytettävän Kruskalin-algoritmin suorituskykyä testattiin eri kokoisillla syötteillä.
 
 ![](./pictures/kruskal_aika.png)
 
