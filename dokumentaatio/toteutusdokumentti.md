@@ -1,5 +1,6 @@
 # Toteutusdokumentti
 
+Algoritmien vertailu toteutettiin rakentamalla sovellus graafisella käyttöliittymällä, jossa annetun syötteen kokoinen labyrintti luodaan ja sen ratkaisu on mahdollista WallFollower- ja Tremaux-algoritmeilla. Ratkaisua on havainnollistettu reitin piirtymisellä kuvaan ja algoritmien vertailu on mahdollista ratkaisuun kuluneen ajan ja askeleiden mittaamisella.
 
 ## Labyrintin generointi
 
