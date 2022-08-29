@@ -66,7 +66,7 @@ class Explore:
             return north
         if moving_direction == east:
             return west
-        if moving_direction == west:
+        else: # moving direction == west
             return east
 
     def try_left(self, cell, moving_direction):
@@ -101,7 +101,7 @@ class Explore:
             return south
         if moving_direction == south:
             return west
-        if moving_direction == west:
+        else: # moving_direction == west
             return north
 
     def turn_where_is_left(self, moving_direction):
@@ -119,7 +119,7 @@ class Explore:
             return north
         if moving_direction == south:
             return east
-        if moving_direction == west:
+        else: # moving_direction == west
             return south
 
     def move_forward(self, cell, moving_direction):
