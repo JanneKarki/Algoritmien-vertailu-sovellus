@@ -2,7 +2,7 @@
 
 ## Testien kattavuus
 
-![](./pictures/coverage_report2.png)
+![](./pictures/test_pictures/coverage_3.png)
 
 
 ## Suorituskykytestit

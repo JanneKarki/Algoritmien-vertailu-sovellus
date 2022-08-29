@@ -12,3 +12,4 @@
 - [Viikkoraportti 3](https://github.com/JanneKarki/Algoritmien-vertailu-sovellus/blob/master/dokumentaatio/Viikkoraportti_3.md)
 - [Viikkoraportti 4](https://github.com/JanneKarki/Algoritmien-vertailu-sovellus/blob/master/dokumentaatio/Viikkoraportti_4.md)
 - [Viikkoraportti 5](https://github.com/JanneKarki/Algoritmien-vertailu-sovellus/blob/master/dokumentaatio/Viikkoraportti_5.md)
+- [Viikkoraportti 6](https://github.com/JanneKarki/Algoritmien-vertailu-sovellus/blob/master/dokumentaatio/Viikkoraportti_6.md)
