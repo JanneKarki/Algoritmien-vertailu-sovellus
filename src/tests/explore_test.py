@@ -124,3 +124,18 @@ class TestExplore(unittest.TestCase):
         self.assertEqual(location, (0,1))
     
     
+    def test_turn_around_returns_correct_direction(self):
+        north = 0
+        east = 1
+        south = 2
+        west = 3
+
+        left_moving_north = self.explore.turn_around(0) == south
+        left_moving_east = self.explore.turn_around(1) == west
+        left_moving_south = self.explore.turn_around(2) == north
+        left_moving_west = self.explore.turn_around(3) == east
+
+        self.assertEqual(True, left_moving_north)
+        self.assertEqual(True, left_moving_east)
+        self.assertEqual(True, left_moving_south)
+        self.assertEqual(True, left_moving_west)
