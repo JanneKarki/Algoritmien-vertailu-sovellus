@@ -60,7 +60,7 @@ Tremauxi-algoritmin suoritusaika kasvaa logaritmisesti labyrintin koon kasvaessa
 
 ## Testitulokset taulukossa
 
-Wallfollower ja Tremaux algoritmeja verrattiin keskenään erikokoisilla labyrinteillä suorittamalla molemmilla kymmenen toistoa ja vertailemalla niiden keskiarvoja. 
+Suuren hajonnan vuoksi, Wallfollower- ja Tremaux-algoritmeja verrattiin keskenään erikokoisilla labyrinteillä suorittamalla molemmilla kymmenen toistoa ja vertailemalla niiden keskiarvoja. 
 
 
 ![](./pictures/test_pictures/result_chart.png)
