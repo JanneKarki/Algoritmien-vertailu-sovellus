@@ -3,21 +3,21 @@
 
 ## Yksikkötestit
 
-[Visualization-luokan](https://github.com/JanneKarki/Algoritmien-vertailu-sovellus/blob/master/src/tests/visualization_test.py) yksikkötestit, testaavat luokan moinpuolisesti. Sen että kuva muodostuu ja että sen solun ja seinien paksuudet mukautuvat labyrintin koon mukaan. Myös piirrettävän ratkaisun täytyy muuttua samassa suhteessa. Nämä tulevat testatuksi.
+- [Visualization](https://github.com/JanneKarki/Algoritmien-vertailu-sovellus/blob/master/src/tests/visualization_test.py) - Labyrintin ja sen ratkaisun piirtämisestä vastaavan luokan testit.
 
-[Explorer-luokan](https://github.com/JanneKarki/Algoritmien-vertailu-sovellus/blob/master/src/tests/explore_test.py) yksikkötestit kattavat kaikki luokan metodit. Testaavat että labyrintissä liikkumisesta vastaavat metodit toimivat. Onko edessä, oikealla tai vasemmalla seinää. Oikealle-, vasemmalle ja ympärikääntyminen. Eeteenpäinliikkuminen etenee oikeaan soluun.
+- [Explorer](https://github.com/JanneKarki/Algoritmien-vertailu-sovellus/blob/master/src/tests/explore_test.py) - Labyrintissä liikkumisesta vastaavan luokan testit.
 
-[WallFollower-luokan](https://github.com/JanneKarki/Algoritmien-vertailu-sovellus/blob/master/src/tests/wall_follower_test.py) yksikkötestit
+- [WallFollower](https://github.com/JanneKarki/Algoritmien-vertailu-sovellus/blob/master/src/tests/wall_follower_test.py) - algoritmista vastaavan luokan testit.
 
-[Tremaux-luokan](https://github.com/JanneKarki/Algoritmien-vertailu-sovellus/blob/master/src/tests/tremaux_test.py) yksikkötestit
+- [Tremaux](https://github.com/JanneKarki/Algoritmien-vertailu-sovellus/blob/master/src/tests/tremaux_test.py) - algoritmista vastaavan luokan testit.
 
-[Maze-luokan](https://github.com/JanneKarki/Algoritmien-vertailu-sovellus/blob/master/src/tests/maze_test.py) yksikkötestit
+- [Maze](https://github.com/JanneKarki/Algoritmien-vertailu-sovellus/blob/master/src/tests/maze_test.py) - Labyrintin luomisesta vastaavan luokan testit.
 
 ### Testien kattavuus
 
 ![](./pictures/test_pictures/coverage_4.png)
 
-UI-käyttöliittymäluokka on jätetty testien ulkopuolelle.
+- UI-käyttöliittymäluokka on jätetty testien ulkopuolelle.
 
 
 
