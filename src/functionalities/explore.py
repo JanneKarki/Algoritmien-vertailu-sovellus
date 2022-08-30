@@ -66,8 +66,8 @@ class Explore:
             return NORTH
         if moving_direction == EAST:
             return WEST
-        else:  # moving direction == west
-            return EAST
+        #else:  moving direction == west
+        return EAST
 
     def try_left(self, cell, moving_direction):
         """Tarkistaa, ettei vasemmalla ole seinää.
@@ -101,8 +101,8 @@ class Explore:
             return SOUTH
         if moving_direction == SOUTH:
             return WEST
-        else:  # moving_direction == west
-            return NORTH
+        #else:  moving_direction == west
+        return NORTH
 
     def turn_where_is_left(self, moving_direction):
         """Kääntää etenemissuunnan vasemmalle.
@@ -119,8 +119,8 @@ class Explore:
             return NORTH
         if moving_direction == SOUTH:
             return EAST
-        else:  # moving_direction == west
-            return SOUTH
+        # else: moving_direction == west
+        return SOUTH
 
     def move_forward(self, cell, moving_direction):
         """Etenee yhden ruudun eteenpäin.

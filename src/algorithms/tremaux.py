@@ -1,13 +1,8 @@
-from functionalities.explore import Explore
-from functionalities.visualization import Visualization
 import math
 import random
 import time
-
-north = 0
-east = 1
-south = 2
-west = 3
+from functionalities.explore import EAST, Explore
+from functionalities.visualization import Visualization
 
 
 class Tremaux:
@@ -34,7 +29,6 @@ class Tremaux:
         self.visited = []
         self.visited_twice = []
         self.elapsed_time = None
-        
 
         self.solve_maze()
 
@@ -45,7 +39,7 @@ class Tremaux:
 
         start = 0, 0
         cell = start
-        moving_direction = east
+        moving_direction = EAST
         start_time = time.time()
 
         while cell != ((self.maze_size-1, self.maze_size-1)):
@@ -68,25 +62,27 @@ class Tremaux:
                     moving_direction = self.explore.turn_around(
                         moving_direction)
                     continue
-                else:
-                    if len(once_visited_directions) == 1:
-                        self.visited_twice.append(cell)
-                        moving_direction = once_visited_directions[0]
-                        cell = self.explore.move_forward(
-                            cell, moving_direction)
-                        self.solution.append(cell)
-                        continue
-                    else:
-                        moving_direction = random.choice(
-                            once_visited_directions)
-                        cell = self.explore.move_forward(
-                            cell, moving_direction)
-                        self.solution.append(cell)
-                        continue
+
+                if len(once_visited_directions) == 1:
+                    self.visited_twice.append(cell)
+                    moving_direction = once_visited_directions[0]
+                    cell = self.explore.move_forward(
+                        cell, moving_direction)
+                    self.solution.append(cell)
+                    continue
+
+                moving_direction = random.choice(
+                    once_visited_directions)
+                cell = self.explore.move_forward(
+                    cell, moving_direction)
+                self.solution.append(cell)
+                continue
+
+
         end_time = time.time()
         self.count_time(start_time, end_time)
-        self.visualization.draw_solution(self.solution, "tremaux", self.maze_size)
-
+        self.visualization.draw_solution(
+            self.solution, "tremaux", self.maze_size)
 
     def not_visited_directions(self, cell, moving_direction):
         """Tarkistaa onko solusta reittejä, joilla algoritmi ei ole vielä vieraillut.
@@ -179,5 +175,5 @@ class Tremaux:
             start_time (float): Ratkaisun aloitusaika.
             end_time (float): Ratkaisun valmistumisaika.
         """
-        elapsed_time = "{0:.5f}".format(end_time-start_time)
+        elapsed_time = f"{end_time-start_time:.5f}"
         self.elapsed_time = elapsed_time

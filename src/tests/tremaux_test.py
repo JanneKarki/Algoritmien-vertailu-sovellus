@@ -20,4 +20,3 @@ class TestTremaux(unittest.TestCase):
     def test_maze_size_is_correct(self):
         maze_size = self.tremaux.maze_size
         self.assertEqual(maze_size, 5)
-

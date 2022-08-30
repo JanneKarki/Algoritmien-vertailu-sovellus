@@ -30,7 +30,7 @@ class Maze:
                 node = (x, y)
                 self.graph[node] = []
 
-        for node in self.graph.keys():
+        for node in self.graph:
             x, y = node
             neighbours = []
 
@@ -44,22 +44,27 @@ class Maze:
                 neighbours.append((x, y + 1))
             self.graph[node] = neighbours
 
-        for element in self.graph.keys():
+        for element in self.graph:
             self.disjoint_set[element] = element
 
-        for node in self.graph.keys():
+        for node in self.graph:
             neighbours = self.graph[node]
             for neighbour in neighbours:
-                if (node, neighbour) not in self.graph_edges and (neighbour, node) not in self.graph_edges:
-                    self.graph_edges.append((node, neighbour))
+                if (
+                    node, neighbour) not in\
+                    self.graph_edges and\
+                    (neighbour, node) not in\
+                    self.graph_edges:
+                    self.graph_edges.append((node, neighbour)
+                    )
 
-        while (len(self.solution) < (len(self.graph.keys()) - 1)):
+        while (len(self.solution) < (len(self.graph) - 1)):
             rnd_edge = random.choice(self.graph_edges)
             node1, node2 = rnd_edge
             set1 = self._find(node1)
             set2 = self._find(node2)
 
-            if (set1 != set2):
+            if set1 != set2:
                 self._union(node1, node2)
                 self.solution.append(rnd_edge)
 
@@ -73,8 +78,8 @@ class Maze:
     def _find(self, element):
         if self.disjoint_set[element] == element:
             return element
-        else:
-            return self._find(self.disjoint_set[element])
+
+        return self._find(self.disjoint_set[element])
 
     def _union(self, element1, element2):
         _set1 = self._find(element1)
@@ -82,19 +87,19 @@ class Maze:
         self.disjoint_set[_set1] = _set2
 
     def maze_in_air_directions(self, maze):
-        """Käy läpi Kruskalin luoman ratkaisun ja muodostaa niistä avain=solu + arvo=tuple(0,0,0,0) pareja,
-           jossa on tieto mihin ilman suuntaan solusta on pääsy.(north,east,south,west)
-           0=ei pääsyä, 1=pääsy.
+        """Käy läpi Kruskalin luoman ratkaisun ja muodostaa niistä
+            avain=solu + arvo=tuple(0,0,0,0) pareja, jossa on tieto
+            mihin ilman suuntaan solusta on pääsy.
+            (north,east,south,west) 0=ei pääsyä, 1=pääsy.
 
         Args:
             maze (list): Kruskalin luoma labyrintti.
 
         Returns:
-            dict: Palauttaa sanakirjan, jossa jokaisesta labyrintin solusta löytyy tieto mihin ilmansuuntaan
-                  on pääsy.
+            dict: Palauttaa sanakirjan, jossa jokaisesta labyrintin
+                  solusta löytyy tieto mihin ilmansuuntaan on pääsy.
         """
-        "0,1,2,3"
-        "N,E,S,W"
+
         for x in range(self.maze_size):
             for y in range(self.maze_size):
                 self.air_directed_maze[(x, y)] = (0, 0, 0, 0)
@@ -143,5 +148,5 @@ class Maze:
             start_time (float): Ratkaisun aloitusaika.
             end_time (float): Ratkaisun valmistumisaika.
         """
-        elapsed_time = "{0:.5f}".format(end_time-start_time)
+        elapsed_time = f"{end_time-start_time:.5f}"
         self.elapsed_time = elapsed_time

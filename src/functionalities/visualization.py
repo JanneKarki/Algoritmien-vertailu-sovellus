@@ -21,8 +21,14 @@ class Visualization:
             maze_size (int): Labyrintin koko.
         """
         self.adjust_image_size(maze_size)
-        img = np.zeros((maze_size * (self.cell_thickness + self.wall_thickness) + self.wall_thickness,
-                        maze_size * (self.cell_thickness + self.wall_thickness) + self.wall_thickness), dtype=np.uint8)
+        img = np.zeros((maze_size *
+                        (self.cell_thickness + self.wall_thickness) +
+                        self.wall_thickness,
+                        maze_size *
+                        (self.cell_thickness + self.wall_thickness) +
+                        self.wall_thickness), dtype=np.uint8
+                       )
+
         image_size = (maze_size * (self.cell_thickness +
                       self.wall_thickness) + self.wall_thickness)
         for edge in maze:
@@ -57,9 +63,8 @@ class Visualization:
         """
         if maze_size > 10:
             self.cell_thickness = int((10/maze_size)*20)
-            self.wall_thickness = int((10/maze_size)*6)
-            if self.wall_thickness < 1:
-                self.wall_thickness = 1
+            self.wall_thickness = max(int((10/maze_size)*6),1)
+
         else:
             self.cell_thickness = 20
             self.wall_thickness = 6
@@ -69,9 +74,9 @@ class Visualization:
         """
         self.adjust_solution_size(maze_size)
         path = "src/data/solution_" + algorithm + ".png"
-        with Image.open("src/data/maze.png") as im:
+        with Image.open("src/data/maze.png") as image:
 
-            draw = ImageDraw.Draw(im)
+            draw = ImageDraw.Draw(image)
             last_point = (0, 0)
             for line in solution:
                 draw.line(
@@ -85,16 +90,14 @@ class Visualization:
                 )
 
                 last_point = line
-            im.save(path)
+            image.save(path)
 
     def adjust_solution_size(self, maze_size):
         """Säätää piirrettävän ratkaisun kokoa labyrintin kokoa vastaavaksi.
         """
         if maze_size > 10:
             self.cell_thickness = int((10/maze_size)*20)
-            self.wall_thickness = int((10/maze_size)*6)
-            if self.wall_thickness < 1:
-                self.wall_thickness = 1
+            self.wall_thickness = max(int((10/maze_size)*6),1)
             self.total_cell_thickness = round(
                 self.cell_thickness+self.wall_thickness)
             self.cell_center = round(self.total_cell_thickness/2)

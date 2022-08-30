@@ -36,7 +36,8 @@ class TestVisualization(unittest.TestCase):
         self.visualization.draw_maze_image(self.maze.solution, self.maze_size)
         image = Image.open("src/data/maze.png")
 
-        self.assertEqual(str(type(image)), "<class 'PIL.PngImagePlugin.PngImageFile'>")
+        self.assertEqual(str(type(image)),
+                         "<class 'PIL.PngImagePlugin.PngImageFile'>")
 
     def test_adjust_image_size_when_maze_size_is_over_10(self):
         maze_size = 30
@@ -64,4 +65,3 @@ class TestVisualization(unittest.TestCase):
         wall = self.visualization.wall_thickness == 1
 
         self.assertEqual(True, wall)
-       
