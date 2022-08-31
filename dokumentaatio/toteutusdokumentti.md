@@ -17,7 +17,7 @@ Ensimmäiseksi ratkaisualgoritmiksi valikoitui Wall Follower algoritmi, joka sel
 
 ### Tremaux
 
-Toisena ratkaisualgoritmina on Treamux, joka selviää hyvin yhtenäisestä labyrintistä, mutta selviäisi myös epäyhtenäisestä labyrintistä. Tremaux-algrotmi merkitsee jo kulkemansa reitin sitä mukaan, kun se etenee labyrintissä. Kaksi kertaa merkatulle reitille se ei enään mene, niin ulosjohtamattomat reitit "sulkeutuvat", ja reitti ulos aina lopulta löytyy. Koska algoritmi valitsee suunna risteyksissä satunnaisesti, niin samassa labyrintissä voi tulla lukuisia erilaisia ratkaisuja, joiden suoritusaika vaihtelee. Aikavaativuus Treamux-algoritmille on O(log(n)).
+Toisena ratkaisualgoritmina on Treamux, joka selviää hyvin yhtenäisestä labyrintistä, mutta selviäisi myös epäyhtenäisestä labyrintistä. Tremaux-algoritmi merkitsee jo kulkemansa reitin sitä mukaan, kun se etenee labyrintissä. Kaksi kertaa merkatulle reitille se ei enään mene, jolloin ulosjohtamattomat reitit "sulkeutuvat", ja reitti ulos aina lopulta löytyy. Koska algoritmi valitsee suunna risteyksissä satunnaisesti, niin samassa labyrintissä voi tulla lukuisia erilaisia ratkaisuja, joiden suoritusaika vaihtelee. Aikavaativuus Treamux-algoritmille on O(log(n)).
 
 ## Pakkausrakenne
 
