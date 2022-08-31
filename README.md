@@ -22,7 +22,7 @@ Lataa viimeisimmän [releasen](https://github.com/JanneKarki/Algoritmien-vertail
 
 ## Ohjelman käynnistäminen
 
-Sovellus käyttää riippuvuuksien hallintaan poetrya, joten se tulee olla asennettuna koneelle. Asennuksen voit tarkistaa komennolla `poetry --version`. Tarvittaessa asennus onnistuu esimerkiksi [Ohte-kurssin](https://ohjelmistotekniikka-hy.github.io/python/viikko2#asennus)- ohjeella 
+Sovellus käyttää riippuvuuksien hallintaan poetrya, joten se tulee olla asennettuna koneelle. Asennuksen voit tarkistaa komennolla `poetry --version`. Tarvittaessa asennus onnistuu esimerkiksi [Ohte-kurssin](https://ohjelmistotekniikka-hy.github.io/python/viikko2#asennus)- ohjeella.
 
 Ennen sovelluksen käynnistämistä, suorita komentoriviltä sovelluksen juurihakemistossa seuraavat komennot:
 
