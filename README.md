@@ -17,7 +17,7 @@
 
 ## Sovelluksen käyttöönotto
 
-Lataa viimeisimmän [releasen](https://github.com/JanneKarki/Algoritmien-vertailu-sovellus/releases/tag/Loppupalautus) lähdekoodi valitsemalla Assets-osion alta Source code.
+Lataa viimeisimmän [releasen](https://github.com/JanneKarki/Algoritmien-vertailu-sovellus/releases/tag/Lopullinen_versio) lähdekoodi valitsemalla Assets-osion alta Source code.
 
 
 ## Ohjelman käynnistäminen
