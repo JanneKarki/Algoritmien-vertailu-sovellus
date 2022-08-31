@@ -5,7 +5,7 @@
 
 - [Visualization](https://github.com/JanneKarki/Algoritmien-vertailu-sovellus/blob/master/src/tests/visualization_test.py) - Labyrintin ja sen ratkaisun piirtämisestä vastaavan luokan testit.
 
-- [Explorer](https://github.com/JanneKarki/Algoritmien-vertailu-sovellus/blob/master/src/tests/explore_test.py) - Labyrintissä liikkumisesta vastaavan luokan testit.
+- [Explorer](https://github.com/JanneKarki/Algoritmien-vertailu-sovellus/blob/master/src/tests/explore_test.py) - Labyrintissä algoritmien etenemisestä vastaavan luokan testit.
 
 - [WallFollower](https://github.com/JanneKarki/Algoritmien-vertailu-sovellus/blob/master/src/tests/wall_follower_test.py) - algoritmista vastaavan luokan testit.
 
@@ -15,7 +15,7 @@
 
 ### Testien kattavuus
 
-![](./pictures/test_pictures/coverage_4.png)
+![](./pictures/test_pictures/coverage_5.png)
 
 - UI-käyttöliittymäluokka on jätetty testien ulkopuolelle.
 
