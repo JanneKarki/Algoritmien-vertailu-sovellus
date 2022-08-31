@@ -55,8 +55,7 @@ class WallFollower:
             continue
 
         end_time = time.time()
-        last_step = (self.maze_size-1, self.maze_size-1)
-        self.solution.append(last_step)
+
         self.count_time(start_time, end_time)
         self.visualization.draw_solution(
             self.solution, "wall_follower", self.maze_size)
